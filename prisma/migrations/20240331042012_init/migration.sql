@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Jornada" ALTER COLUMN "createdAt" SET DATA TYPE TIME(3),
+ALTER COLUMN "updatedAt" SET DATA TYPE TIME(3);
