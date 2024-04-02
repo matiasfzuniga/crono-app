@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Crono App
 
-## Getting Started
 
-First, run the development server:
+## Tecnologías Utilizadas
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![React](https://img.shields.io/badge/React-16.0%2B-blue)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-14.0%2B-green)](https://nodejs.org/)
+![ts](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square)
+![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+## 🚀 Estructura de proyecto
+
+Dentro de mi proyecto de Next, verás las siguientes carpetas y archivos:
+
+```text
+/
+├── public/
+├── src/
+│   └── app/
+│       └── about/
+|           └── page.tsx
+│       └── components/
+|           └── ui/
+|               └── button.jsx
+|               └── card.jsx
+|               └── input.jsx
+|               └── separator.jsx
+|               └── tabs.jsx
+|               └── textarea.jsx
+└── package.json
+└──  ...
 ```
+Dentro de `/components/`, encontramos componentes que reutilizables, tanto de shadcn.ui como propios
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Los elementos estáticos como algunas imagenes se encuentran en `public/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧞 Comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Todos los comandos inician desde el root del proyecto, a través de la terminal:
 
-## Learn More
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Instalar dependencias                            |
+| `npm run dev`             | Inicia local dev server en `localhost:3000`      |
+| `npm run build`           | Crea el sitio de producción                      |
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👀 Quieres ver la web en producción ?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Visita [la web oficial]() 
