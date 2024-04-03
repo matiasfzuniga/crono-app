@@ -19,16 +19,26 @@ Dentro de mi proyecto de Next, verás las siguientes carpetas y archivos:
 ├── public/
 ├── src/
 │   └── app/
-│       └── about/
-|           └── page.tsx
+│       └── api/
+│           └── [id]/
+│               └── route.ts
+│           └── routes/
+│               └── route.ts
+|       └── globals.css
+│       └── layout.tsx
+|       └── page.tsx
 │       └── components/
 |           └── ui/
+|               └── alert-dialog.jsx
 |               └── button.jsx
 |               └── card.jsx
 |               └── input.jsx
-|               └── separator.jsx
-|               └── tabs.jsx
+|               └── switch.jsx
 |               └── textarea.jsx
+|           └── theme-provider.jsx
+│       └── lib/
+│           └── prisma.ts
+│           └── utils.ts
 └── package.json
 └──  ...
 ```
