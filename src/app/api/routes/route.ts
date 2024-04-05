@@ -1,11 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
-  const jornada = await prisma.jornada.findMany();
-  return NextResponse.json(jornada);
-}
-
+  
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

@@ -22,22 +22,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useTheme } from "next-themes"
+
+
 
 const IndexPage: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [theme, setThemes] = useState("light");
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const { setTheme } = useTheme()
-  const toggleTheme = () => {
-    setThemes(theme === "light" ? "dark" : "light");
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
@@ -61,12 +57,12 @@ const IndexPage: React.FC = () => {
   };
 
   const handleStartStop = () => {
-    if (isRunning) {
-      setIsRunning(false);
-    } else {
-      setStartTime(Date.now() - elapsedTime);
-      setIsRunning(true);
-    }
+        if (isRunning) {
+          setIsRunning(false);
+        } else {
+          setStartTime(Date.now() - elapsedTime);
+          setIsRunning(true);
+        }
   };
 
   const handleReset = () => {
@@ -133,18 +129,13 @@ const IndexPage: React.FC = () => {
           <Button onClick={handleReset} className="m-2" variant="outline">Reiniciar</Button>
           </div>
           <AlertDialogTrigger asChild>
-          <Button className="w-[79%]">
+          <Button onClick={() => isRunning ? setIsRunning(false) : ""} className="w-[79%]">
             Guardar
           </Button>
           </AlertDialogTrigger>
         </CardFooter>
       </Card>
-      <div className="absolute lg:right-4 top-4 right-7">
-      <Button variant="outline" size="icon" onClick={toggleTheme}>
-          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        </Button>
-      </div>
+
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Guardar sesión del día {new Date().toLocaleDateString("en-GB")}</AlertDialogTitle>
