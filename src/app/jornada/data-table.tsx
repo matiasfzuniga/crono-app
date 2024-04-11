@@ -55,6 +55,12 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
+    initialState: {
+      pagination: {
+        pageIndex: 0, //custom initial page index
+        pageSize: 5, //custom default page size
+      },
+    },
     state: {
       sorting,
       columnFilters,
@@ -63,8 +69,8 @@ export function DataTable<TData, TValue>({
   })
  
   return (
-    <div>
-         <div className="flex items-center py-4">
+    <div className="lg:pt-40 lg:px-36">
+         <div className="flex items-center py-8">
         <Input
           placeholder="Filter title..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
