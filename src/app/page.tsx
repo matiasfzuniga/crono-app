@@ -114,7 +114,7 @@ const IndexPage: React.FC = () => {
         <CardHeader>
           <CardTitle>Cronómetro</CardTitle>
           <CardDescription>     
-           contador de horas exactas de trabajo
+           contador de horas 
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col justify-center items-center">
