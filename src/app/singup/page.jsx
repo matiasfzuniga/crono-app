@@ -1,92 +1,75 @@
 'use client'
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { useForm } from "react-hook-form";
 function SignIn() {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  const [passError, setPassError] = useState(false);
 
-  const router = useRouter()
-
-  useEffect(() => {
-    validatePassword(password, confirmPassword);
-  }, [password, confirmPassword]);
-
-  function validatePassword(pass, confrimPass) {
-    let isValid = pass === confrimPass;
-    if (!isValid) {
-      setPassError(true);
-    }
-  }
-  async function handleSubmit(e) {
-    e.preventDefault();
-    let userData = {
-      name,
-      email,
-      password,
-    };
-
-    // Make call to backend to create user
-    const res = await fetch("http://localhost:3000/api/user/create", {
+  const {register, handleSubmit, formState: {errors}} = useForm()
+  const onSubmit =handleSubmit( async data => {
+    const res = await fetch('/api/register', {
       method: "POST",
-      body: JSON.stringify(userData),
+      body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      router.push('/login')
-
-      // registration success
-    } else {
-      //registration faled
-    }
-  }
+    })
+    const resJSON = await res
+    console.log(resJSON)
+   
+  })
   return (
-      <div className="flex justify-center items-center m-auto p-3">
+      <div className="flex justify-center items-center pt-16">
         <form
-          onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="bg-white shadow-md rounded px-8 py-8"
+          onSubmit={onSubmit}
         >
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
             >
               Name
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+              className={`border rounded w-full py-2 px-3 text-gray-700`}
               id="name"
               type="text"
+              { ...register ("name", {
+                required:{value:true,
+                  message:"este campo es requerido"},
+              })}
               placeholder="name"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
             />
+            {
+              errors.name &&  (
+                <span className="text-red-500">
+                  {errors.name.message}
+                </span>
+              )
+            }
           </div>
 
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
             >
               Email
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+              className={`border rounded w-full py-2 px-3 text-gray-700`}
               id="email"
               type="email"
-              placeholder="Email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              { ...register ("email", {
+                required:{value:true,
+                  message:"este campo es requerido"},
+              })}
+              placeholder="email"
             />
+             {
+              errors.email &&  (
+                <span className="text-red-500">
+                  {errors.email.message}
+                </span>
+              )
+            }
           </div>
           <div className="mb-6">
             <label
@@ -96,51 +79,27 @@ function SignIn() {
               Password
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
+              className={`shadowborder rounded w-full py-2 px-3 text-gray-700 mb-3`}
               id="password"
-              type="password"
+              type="current-password"
+              { ...register ("password", {
+                required:{value:true,
+                message:"este campo es requerido"
+                },
+                
+              })}
               placeholder="***********"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
             />
+             {
+              errors.password &&  (
+                <span className="text-red-500">
+                  {errors.password.message}
+                </span>
+              )
+            }
           </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="confirm-password"
-            >
-              Confirm Password
-            </label>
-            <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
-              id="confirm-password"
-              type="password"
-              placeholder="***********"
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
-            />
-            {passError && (
-              <p className="text-red-500 text-xs italic">
-                Password do not match!
-              </p>
-            )}
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2  px-4 rounded  focus:outline-none  focus:shadow-outline"
-              type="submit"
-            >
-              Sign Up
-            </button>
-            <a
-              className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="#"
-            >
-              Have an account? Sign in
-            </a>
-          </div>
+
+          <button className="w-full h-10">register</button>
         </form>
       </div>
   );
