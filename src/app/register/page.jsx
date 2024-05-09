@@ -1,10 +1,11 @@
 'use client'
 import React from "react";
 import { useForm } from "react-hook-form";
+
 function SignIn() {
 
   const {register, handleSubmit, formState: {errors}} = useForm()
-  const onSubmit =handleSubmit( async data => {
+  const onSubmit = handleSubmit( async data => {
     const res = await fetch('/api/register', {
       method: "POST",
       body: JSON.stringify(data),
@@ -12,8 +13,12 @@ function SignIn() {
         'Content-Type': 'application/json'
       },
     })
-    const resJSON = await res
-    console.log(resJSON)
+    if (res.ok){
+      const resJSON = await res.json()
+      console.log(resJSON)
+    }else{
+      console.log("hubo un error")
+    }
    
   })
   return (

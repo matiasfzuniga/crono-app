@@ -19,20 +19,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import {
+  DrawerTrigger,
+ } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-
+import AuthButton from "@/components/AuthButton.server";
+import { useSession } from "next-auth/react";
+import Login from "@/components/login";
 
 const IndexPage: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-
   const [title, setTitle] = useState("");
+  const [props, setProps] = useState("");
   const [description, setDescription] = useState("");
-
+  const {data:session} = useSession();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -107,6 +111,11 @@ const IndexPage: React.FC = () => {
     
   }
 
+  const handleSave = () => {
+      setProps("true")
+      return isRunning ? setIsRunning(false) : ""
+  }
+
   return (
     <div className="flex justify-center items-center lg:p-10 pt-16">
       <AlertDialog>
@@ -128,14 +137,14 @@ const IndexPage: React.FC = () => {
           </Button>
           <Button onClick={handleReset} className="m-2" variant="outline">Reiniciar</Button>
           </div>
-          <AlertDialogTrigger asChild>
-          <Button onClick={() => isRunning ? setIsRunning(false) : ""} className="w-[79%]">
+          <AlertDialogTrigger asChild>        
+          <Button onClick={handleSave} className="w-[79%]">
             Guardar
           </Button>
-          </AlertDialogTrigger>
+          </AlertDialogTrigger>   
         </CardFooter>
       </Card>
-
+      {session?.user?.name ?    
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Guardar sesión del día {new Date().toLocaleDateString("en-GB")}</AlertDialogTitle>
@@ -153,7 +162,10 @@ const IndexPage: React.FC = () => {
           <AlertDialogAction onClick={handleSend}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
+
+        : <Login props={props}/>}
       </AlertDialog>
+      
     </div>
   );
 };

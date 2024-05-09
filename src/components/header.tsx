@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
@@ -9,13 +8,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import Login from "./login";
+import { signIn,signOut,useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
-const Header = () => {
-
+const Header = async () => {
+  const session = await getServerSession();
   return (
     <>
       <div className="absolute lg:left-4 top-4 left-7">
-        <DropdownMenu>
+        {session?.user ? <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon">
               <ChevronDownIcon />
@@ -31,10 +33,12 @@ const Header = () => {
             <DropdownMenuItem className="px-4 py-2">Calendar</DropdownMenuItem>
             <DropdownMenuItem className="px-4 py-2">Logout</DropdownMenuItem>
           </DropdownMenuHeadContent>
-        </DropdownMenu>
-      </div>
+        </DropdownMenu> : ""}     
+      </div>  
+   <Login/>   
     </>
   );
 };
+
 
 export default Header;
