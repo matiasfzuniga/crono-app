@@ -8,10 +8,11 @@ import { Drawer,
   DrawerTitle,
  } from "@/components/ui/drawer";
 import ProfileForm from './formLogin';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 const LoginDrawer = ({openDrawer}:any) => {
   const [open, setOpen] = React.useState(false)
+  const router = useRouter()
   return (    
     <div className="absolute lg:right-4 top-6 right-7">
       <Drawer open={openDrawer ? openDrawer : open} onOpenChange={setOpen}>
@@ -24,7 +25,9 @@ const LoginDrawer = ({openDrawer}:any) => {
         </DrawerHeader>
         <ProfileForm className="px-4"/>
         <DrawerFooter className="pt-2">
-        <Link href={"/register"}>Registrate</Link>
+        <button type="button" onClick={() => router.push('/register')}>
+         Registrate
+        </button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer> 

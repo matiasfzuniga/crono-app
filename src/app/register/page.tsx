@@ -3,9 +3,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import Link from "next/link";
 
-function SignUp({open}:any) {
+function SignUp() {
   const {
     register,
     handleSubmit,
@@ -24,25 +24,24 @@ function SignUp({open}:any) {
     }
   });
   return (
-    <div>
-      <Dialog open={true}>
-        <DialogContent className="sm:max-w-[425px]">
+<div className="bg-black/80 h-screen flex justify-center items-center">
+        <div className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg sm:rounded-lg">
           <form
-            className="bg-white shadow-md rounded px-8 py-8"
+            className="px-8 py-8"
             onSubmit={onSubmit}
           >
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Name
+                Nombre
               </label>
               <Input
-                className={`border rounded w-full py-2 px-3 text-gray-700`}
+                className={`border rounded w-full py-2 px-3 text-gray-700 focus-visible:ring-0 focus-visible:ring-offset-0`}
                 id="name"
                 type="text"
                 {...register("name", {
                   required: { value: true, message: "este campo es requerido" },
                 })}
-                placeholder="name"
+                placeholder="nombre"
               />
               {errors.name && (
                 <span className="text-red-500">asd</span>
@@ -86,11 +85,11 @@ function SignUp({open}:any) {
                 <span className="text-red-500">asd</span>
               )}
             </div>
-
             <Button className="w-full h-10">register</Button>
           </form>
-        </DialogContent>
-      </Dialog>
+          <Link href={"/login"} className="w-full text-center">Login</Link>
+        </div>
+      
       </div>
   );
 }
