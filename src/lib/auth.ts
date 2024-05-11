@@ -19,7 +19,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
           if (!credentials?.email || !credentials.password) {
-              throw new Error("este es el primer error");
+              throw new Error("Error al enviar los datos");
             }
             
             const user = await prisma.user.findUnique({
@@ -43,7 +43,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log("Session Callback", { session, token });
       return {
         ...session,
         user: {
@@ -54,7 +53,6 @@ export const authOptions: NextAuthOptions = {
       };
     },
     jwt: ({ token, user }) => {
-      console.log("JWT Callback", { token, user });
       if (user) {
         const u = user as unknown as any;
         return {

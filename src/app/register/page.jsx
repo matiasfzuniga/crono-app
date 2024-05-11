@@ -13,13 +13,9 @@ function SignIn() {
         'Content-Type': 'application/json'
       },
     })
-    if (res.ok){
-      const resJSON = await res.json()
-      console.log(resJSON)
-    }else{
-      console.log("hubo un error")
-    }
-   
+    if (!res.ok){
+      throw new Error('Hubo un problema al enviar los datos.');
+    }   
   })
   return (
       <div className="flex justify-center items-center pt-16">

@@ -19,13 +19,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import {
-  DrawerTrigger,
- } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import AuthButton from "@/components/AuthButton.server";
 import { useSession } from "next-auth/react";
 import Login from "@/components/login";
 
@@ -34,7 +30,7 @@ const IndexPage: React.FC = () => {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [title, setTitle] = useState("");
-  const [props, setProps] = useState("");
+  const [openDrawer, setOpenDrawer] = useState("");
   const [description, setDescription] = useState("");
   const {data:session} = useSession();
 
@@ -102,8 +98,6 @@ const IndexPage: React.FC = () => {
       if (!response.ok) {
         throw new Error('Hubo un problema al enviar los datos.');
       }
-  
-      console.log('Datos enviados correctamente a la API.');
     }
     catch (error) {
       console.error('Error al enviar los datos a la API:', error);
@@ -112,7 +106,7 @@ const IndexPage: React.FC = () => {
   }
 
   const handleSave = () => {
-      setProps("true")
+      setOpenDrawer("true")
       return isRunning ? setIsRunning(false) : ""
   }
 
@@ -163,7 +157,7 @@ const IndexPage: React.FC = () => {
         </AlertDialogFooter>
       </AlertDialogContent>
 
-        : <Login props={props}/>}
+        : <Login openDrawer={openDrawer}/>}
       </AlertDialog>
       
     </div>
