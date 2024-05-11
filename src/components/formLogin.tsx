@@ -3,14 +3,12 @@ import React from 'react'
 import { useForm} from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { signIn } from "next-auth/react";
-import { useRouter } from 'next/navigation';
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button";
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
     const { register, handleSubmit, formState: {errors}} = useForm()
-    const router = useRouter()
-  
+
     const onSubmit = handleSubmit(async data => {
       
       const res = await signIn('credentials', {

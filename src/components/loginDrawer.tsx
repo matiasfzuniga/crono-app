@@ -7,7 +7,8 @@ import { Drawer,
   DrawerFooter,
   DrawerTitle,
  } from "@/components/ui/drawer";
-import ProfileForm from './formRegister';
+import ProfileForm from './formLogin';
+import Link from 'next/link';
 
 const LoginDrawer = ({openDrawer}:any) => {
   const [open, setOpen] = React.useState(false)
@@ -22,7 +23,8 @@ const LoginDrawer = ({openDrawer}:any) => {
           </DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4"/>
-        <DrawerFooter className="pt-2">  
+        <DrawerFooter className="pt-2">
+        <Link href={"/register"}>Registrate</Link>
         </DrawerFooter>
       </DrawerContent>
     </Drawer> 
