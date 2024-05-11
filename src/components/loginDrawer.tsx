@@ -9,7 +9,7 @@ import { Drawer,
  } from "@/components/ui/drawer";
 import ProfileForm from './formRegister';
 
-const Login = ({openDrawer}:any) => {
+const LoginDrawer = ({openDrawer}:any) => {
   const [open, setOpen] = React.useState(false)
   return (    
     <div className="absolute lg:right-4 top-6 right-7">
@@ -30,5 +30,5 @@ const Login = ({openDrawer}:any) => {
   )
 }
 
-export default Login
+export default LoginDrawer
 

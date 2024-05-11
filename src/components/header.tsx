@@ -8,12 +8,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import Login from "./login";
+import LoginDrawer from "@/components/loginDrawer";
 import User from "./user";
-import { getServerSession } from "next-auth";
 
-const Header = async () => {
-  const session = await getServerSession();
+const Header = async ({session}:any) => {
+
   return (
     <>
       {session?.user ? (
@@ -44,7 +43,7 @@ const Header = async () => {
           <User />
         </div>
       ) : (
-        <Login />
+        <LoginDrawer />
       )}
     </>
   );

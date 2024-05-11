@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
-import Login from "@/components/login";
+import LoginDrawer from "@/components/loginDrawer";
 
 const IndexPage: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -157,7 +157,7 @@ const IndexPage: React.FC = () => {
         </AlertDialogFooter>
       </AlertDialogContent>
 
-        : <Login openDrawer={openDrawer}/>}
+        : <LoginDrawer openDrawer={openDrawer}/>}
       </AlertDialog>
       
     </div>

@@ -16,12 +16,10 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       const res = await signIn('credentials', {
         email: data.email,
         password: data.password,
-        redirect:false
+        callbackUrl: "/"
       });
       if(res?.error){
-        alert(res.error)
-      }else{
-        router.push("/jornada")
+        console.error(res.error)
       }
     })
       return (
