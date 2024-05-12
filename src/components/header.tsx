@@ -34,9 +34,6 @@ const Header = async ({session}:any) => {
                 <DropdownMenuItem className="px-4 py-2">
                   Calendar
                 </DropdownMenuItem>
-                <DropdownMenuItem className="px-4 py-2">
-                  LogIn
-                </DropdownMenuItem>
               </DropdownMenuHeadContent>
             </DropdownMenu>
           </div>
