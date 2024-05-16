@@ -14,7 +14,7 @@ const LoginDrawer = ({openDrawer}:any) => {
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
   return (    
-    <div className="absolute lg:right-4 top-6 right-7">
+    <div className="absolute lg:right-4 top-6 right-7"> 
       <Drawer open={openDrawer ? openDrawer : open} onOpenChange={setOpen}>
       <DrawerContent className="flex justify-center items-center outline-none">
         <DrawerHeader className="text-left">

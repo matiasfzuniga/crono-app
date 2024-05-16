@@ -16,7 +16,7 @@ const Header = async ({session}:any) => {
   return (
     <>
       {session?.user ? (
-        <div>
+        <div className="p-2">
           <div className="absolute lg:left-10 top-8 left-7">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

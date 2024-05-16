@@ -18,13 +18,17 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession();
   return (
-    <html lang="en" suppressHydrationWarning className="bg-black m-4">
-      <body className={`${inter.className} bg-[#FF7800] rounded-lg`}>  
+    <html lang="en" suppressHydrationWarning className="bg-black">     
+      <body className={`${inter.className} bg-black`}> 
+      <Header session={session}/>
+      <div className="bg-[#FF7800] rounded-lg mx-2">
         <NextAuthProvider>
-            <Header session={session}/>
             {children}
           </NextAuthProvider>
-        
+      </div> 
+      <div className="bg-[#FF7800] h-[280px] rounded-lg mx-2 my-4">
+
+      </div>    
       </body>
     </html>
   );
