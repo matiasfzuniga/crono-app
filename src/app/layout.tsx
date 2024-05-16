@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import {Viga } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { NextAuthProvider } from "./providers";
 import Header from "@/components/header";
 import { getServerSession } from "next-auth";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter =Viga({ subsets: ['latin'], weight:['400'] });
 
 export const metadata: Metadata = {
   title: "Crono app",
@@ -19,18 +18,11 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession();
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>  
+    <html lang="en" suppressHydrationWarning className="bg-black m-4">
+      <body className={`${inter.className} bg-[#FF7800] rounded-lg`}>  
         <NextAuthProvider>
-          <Header session={session}/>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+            <Header session={session}/>
             {children}
-          </ThemeProvider>
           </NextAuthProvider>
         
       </body>

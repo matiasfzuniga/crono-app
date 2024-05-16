@@ -7,7 +7,7 @@ import { UserRound } from 'lucide-react';
 const User = () => {
  
   return (
-    <div className="absolute lg:right-4 top-6 right-7"><UserRound onClick={() => signOut()}/></div>
+    <div className="absolute lg:right-10 top-10 right-7"><UserRound onClick={() => signOut()}/></div>
   )
 }
 

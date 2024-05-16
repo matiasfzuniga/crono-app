@@ -77,11 +77,11 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         />
                <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button className="m-2 bg-[#FFBD83] hover:bg-[#FF7800] border-[#FFA14F] ml-auto" variant="outline">
               Columns
             </Button>
           </DropdownMenuTrigger>

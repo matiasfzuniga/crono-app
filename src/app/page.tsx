@@ -111,13 +111,13 @@ const IndexPage: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-center items-center lg:p-10 pt-16">
+    <div className="flex justify-center items-center lg:p-10 pt-16 ">
       <AlertDialog>
-      <Card>
+      <Card className="bg-[#FFBD83] border-none">
         <CardHeader>
           <CardTitle>Cronómetro</CardTitle>
-          <CardDescription>     
-           contador de horas 
+          <CardDescription className="text-[#FF7800]">     
+           El objetivo diario son 8 horas 
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col justify-center items-center">
@@ -129,7 +129,7 @@ const IndexPage: React.FC = () => {
           <Button onClick={handleStartStop} className="m-2">
             {isRunning ? "Pausar" : "Iniciar"}
           </Button>
-          <Button onClick={handleReset} className="m-2" variant="outline">Reiniciar</Button>
+          <Button onClick={handleReset} className="m-2 bg-transparent hover:bg-[#FF7800] border-[#FFA14F]" variant="outline">Reiniciar</Button>
           </div>
           <AlertDialogTrigger asChild>        
           <Button onClick={handleSave} className="w-[79%]">

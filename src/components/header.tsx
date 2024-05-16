@@ -17,14 +17,14 @@ const Header = async ({session}:any) => {
     <>
       {session?.user ? (
         <div>
-          <div className="absolute lg:left-4 top-4 left-7">
+          <div className="absolute lg:left-10 top-8 left-7">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="focus:ring-0" variant="ghost" size="icon">
+                <Button className="focus:ring-0 hover:bg-[#FFBD83]" variant="ghost" size="icon">
                   <ChevronDownIcon />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuHeadContent className="w-36 px-4 py-2">
+              <DropdownMenuHeadContent className="w-36 ml-10 px-4 py-2 bg-[#FFBD83]">
                 <DropdownMenuItem className="px-4 py-2">
                   <Link href={"/"}>Inicio</Link>
                 </DropdownMenuItem>
@@ -32,7 +32,7 @@ const Header = async ({session}:any) => {
                   <Link href={"/jornada"}>Jornada</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="px-4 py-2">
-                  Calendar
+                <Link href={"/profile"}>Perfil</Link>
                 </DropdownMenuItem>
               </DropdownMenuHeadContent>
             </DropdownMenu>

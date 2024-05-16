@@ -23,20 +23,6 @@ export const columns: ColumnDef<Jornada>[] = [
     ),
   },
   {
-    accessorKey: "day",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Day
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-  },
-  {
     accessorKey: "description",
     header: "description",
     cell: ({ row }) => (
@@ -52,6 +38,20 @@ export const columns: ColumnDef<Jornada>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Time
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+  },
+  {
+    accessorKey: "day",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Day
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
