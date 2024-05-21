@@ -133,7 +133,7 @@ const IndexPage: React.FC = () => {
       <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
          <ChevronLeft/>
         </Card>
-        <Card className="bg-[#FFBD83] border-none">
+        <Card className="bg-[#FFBD83] border-none shadow-lg">
           <CardContent className="flex flex-col justify-center items-center pt-10">
             <p className="font-semibold">Tiempo transcurrido:</p>
             <h1
@@ -157,7 +157,7 @@ const IndexPage: React.FC = () => {
               </Button>
               <Button
                 onClick={handleReset}
-                className="m-2 bg-transparent rounded-full hover:bg-[#FF7800] border-[#FFA14F]"
+                className="m-2 bg-transparent rounded-full hover:bg-[#FF7800] border-[#FF7800]"
                 size={"icon"}
                 variant="outline"
               >
@@ -176,7 +176,7 @@ const IndexPage: React.FC = () => {
           </CardFooter>
         </Card>
         <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
-          <span className="text-[#FF7800] border border-input border-[#FF7800] p-1 rounded-full h-8 w-8 text-center text-md">
+          <span className="text-[#FF7800] border border-[#FF7800] p-1 rounded-full h-8 w-8 text-center text-md">
             10
           </span>
           <span className="[writing-mode:vertical-lr] font-semibold">objetivo</span>

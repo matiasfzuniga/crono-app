@@ -12,7 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
- 
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
     <div className="lg:pt-10 lg:px-36">
          <div className="flex items-center py-8">
         <Input
-          placeholder="Filter title..."
+          placeholder="Buscar..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
@@ -83,7 +83,7 @@ export function DataTable<TData, TValue>({
                <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button className="m-2 bg-[#FFBD83] hover:bg-[#FF7800] border-[#FFA14F] ml-auto" variant="outline">
-              Columns
+              Columnas
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -147,7 +147,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                Sin resultados
               </TableCell>
             </TableRow>
           )}
@@ -161,7 +161,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            <ChevronLeft/>
           </Button>
           <Button
             variant="outline"
@@ -169,7 +169,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            <ChevronRight/>
           </Button>
         </div>
         </div>

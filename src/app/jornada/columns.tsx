@@ -4,9 +4,6 @@ import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
- 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Jornada = {
   day: string
   time: string
@@ -17,14 +14,14 @@ export type Jornada = {
 export const columns: ColumnDef<Jornada>[] = [
   {
     accessorKey: "title",
-    header: "title",
+    header: "título",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("title")}</div>
     ),
   },
   {
     accessorKey: "description",
-    header: "description",
+    header: "descripción",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("description")}</div>
     ),
@@ -37,7 +34,7 @@ export const columns: ColumnDef<Jornada>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Time
+          Tiempo
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
@@ -51,7 +48,7 @@ export const columns: ColumnDef<Jornada>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Day
+          Día
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )

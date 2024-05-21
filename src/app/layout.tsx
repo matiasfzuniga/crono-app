@@ -25,7 +25,7 @@ export default async function RootLayout({
       <div className="bg-[#FF7800] rounded-lg mx-2">
         <NextAuthProvider>
             {children}
-          </NextAuthProvider>
+        </NextAuthProvider>
       </div> 
      <Footer/>  
       </body>
