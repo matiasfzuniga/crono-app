@@ -4,15 +4,9 @@ import "./globals.css";
 import { NextAuthProvider } from "./providers";
 import Header from "@/components/header";
 import { getServerSession } from "next-auth";
+import Footer from "@/components/footer";
 
-// temporario
-
-import { CalendarClock, SquareUser, Home } from 'lucide-react';
-import Link from "next/link";
-
-// temporario
-
-const inter =Viga({ subsets: ['latin'], weight:['400'] });
+const inter = Viga({ subsets: ['latin'], weight:['400'] });
 
 export const metadata: Metadata = {
   title: "Crono app",
@@ -33,17 +27,7 @@ export default async function RootLayout({
             {children}
           </NextAuthProvider>
       </div> 
-      <div className="bg-[#FF7800] h-[150px] rounded-lg mx-2 my-4 flex justify-center items-center gap-8">
-        <Link href={"/"}>
-        <Home width={60} height={60}/>      
-        </Link>
-        <Link href={"/jornada"}>
-        <CalendarClock width={60} height={60}/>
-        </Link>
-        <Link href={"/profile"}>
-        <SquareUser width={60} height={60}/>
-        </Link>
-      </div>    
+     <Footer/>  
       </body>
     </html>
   );
