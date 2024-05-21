@@ -23,7 +23,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
-import { Zap,FlameKindling, Play, Pause, RotateCcw,  Check } from "lucide-react";
+import {
+  Zap,
+  FlameKindling,
+  Play,
+  Pause,
+  RotateCcw,
+  Check,
+  ChevronLeft,
+} from "lucide-react";
 import LoginDrawer from "@/components/loginDrawer";
 import { Orbitron, Quantico } from "next/font/google";
 
@@ -120,41 +128,58 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center lg:p-10 pt-16 ">
+    <div className="flex justify-center items-center lg:p-10 pt-16 h-[73vh]">
       <AlertDialog>
+      <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
+         <ChevronLeft/>
+        </Card>
         <Card className="bg-[#FFBD83] border-none">
           <CardContent className="flex flex-col justify-center items-center pt-10">
-            <p>Tiempo transcurrido:</p>
+            <p className="font-semibold">Tiempo transcurrido:</p>
             <h1
-              className={`text-3xl font-bold w-full text-center ${orbitron.className}`}
+              className={`text-[45px] font-bold w-full text-center ${orbitron.className}`}
             >
               {formatTime(elapsedTime)}
             </h1>
           </CardContent>
           <CardFooter className="flex flex-col">
             <div className="p-2">
-              <Button size={"icon"} onClick={handleStartStop} className="m-2 rounded-full">
-                {isRunning ? <Pause width={18} height={18}/> : <Play width={18} height={18}/>}
+              <Button
+                size={"icon"}
+                onClick={handleStartStop}
+                className="m-2 rounded-full"
+              >
+                {isRunning ? (
+                  <Pause width={18} height={18} />
+                ) : (
+                  <Play width={18} height={18} />
+                )}
               </Button>
               <Button
                 onClick={handleReset}
                 className="m-2 bg-transparent rounded-full hover:bg-[#FF7800] border-[#FFA14F]"
-                size={"icon"} 
+                size={"icon"}
                 variant="outline"
               >
-                <RotateCcw width={18} height={18}/>
+                <RotateCcw width={18} height={18} />
               </Button>
             </div>
             <AlertDialogTrigger asChild>
-              <Button onClick={handleSave} className="w-[65%] rounded-full" size={"icon"} >             
-                < Check width={15} height={15}/>
+              <Button
+                onClick={handleSave}
+                className="w-[100px] rounded-full"
+                size={"icon"}
+              >
+                <Check width={15} height={15} />
               </Button>
             </AlertDialogTrigger>
           </CardFooter>
         </Card>
-        <Card className="bg-[#FFBD83] border-none p-1 m-4 h-60 w-12 [writing-mode:vertical-lr] flex justify-center items-center">
-          <span>Objetivo :</span>&nbsp;
-          <span className="text-[#FF7800] pb-8">8 horas</span>
+        <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
+          <span className="text-[#FF7800] border border-input border-[#FF7800] p-1 rounded-full h-8 w-8 text-center text-md">
+            10
+          </span>
+          <span className="[writing-mode:vertical-lr] font-semibold">objetivo</span>
           <FlameKindling width={20} height={20} />
         </Card>
 
