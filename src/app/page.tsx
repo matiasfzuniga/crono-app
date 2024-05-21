@@ -18,12 +18,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
+import { Zap,FlameKindling, Play, Pause, RotateCcw,  Check } from "lucide-react";
 import LoginDrawer from "@/components/loginDrawer";
+import { Orbitron } from "next/font/google";
+
+const orbitron = Orbitron({
+  weight: "700",
+  subsets: ["latin"],
+});
 
 const IndexPage: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -32,7 +39,7 @@ const IndexPage: React.FC = () => {
   const [title, setTitle] = useState("");
   const [openDrawer, setOpenDrawer] = useState("");
   const [description, setDescription] = useState("");
-  const {data:session} = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -45,24 +52,26 @@ const IndexPage: React.FC = () => {
   }, [isRunning, startTime]);
 
   const formatTime = (timeInSeconds: number): string => {
-    const milisec = timeInSeconds / 1000
+    const milisec = timeInSeconds / 1000;
     const hours = Math.floor(milisec / 3600);
     const minutes = Math.floor((milisec % 3600) / 60);
     const seconds = Math.floor(milisec % 60);
     const formatNumber = (num: number): string => {
       return num < 10 ? `0${num}` : `${num}`;
     };
-  
-    return `${formatNumber(hours)}:${formatNumber(minutes)}:${formatNumber(seconds)}`;
+
+    return `${formatNumber(hours)}:${formatNumber(minutes)}:${formatNumber(
+      seconds
+    )}`;
   };
 
   const handleStartStop = () => {
-        if (isRunning) {
-          setIsRunning(false);
-        } else {
-          setStartTime(Date.now() - elapsedTime);
-          setIsRunning(true);
-        }
+    if (isRunning) {
+      setIsRunning(false);
+    } else {
+      setStartTime(Date.now() - elapsedTime);
+      setIsRunning(true);
+    }
   };
 
   const handleReset = () => {
@@ -74,92 +83,109 @@ const IndexPage: React.FC = () => {
     setTitle(e.target.value);
   };
 
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setDescription(e.target.value);
   };
 
   const handleSend = async () => {
     try {
-      const currentDate = new Date().toLocaleDateString("en-GB")
+      const currentDate = new Date().toLocaleDateString("en-GB");
       const data = {
         day: currentDate,
         title,
         description,
-        time: formatTime(elapsedTime)
+        time: formatTime(elapsedTime),
       };
-      const response = await fetch('api/routes', {
-        method: 'POST',
+      const response = await fetch("api/routes", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-  
+
       if (!response.ok) {
-        throw new Error('Hubo un problema al enviar los datos.');
+        throw new Error("Hubo un problema al enviar los datos.");
       }
+    } catch (error) {
+      console.error("Error al enviar los datos a la API:", error);
     }
-    catch (error) {
-      console.error('Error al enviar los datos a la API:', error);
-    }
-    
-  }
+  };
 
   const handleSave = () => {
-      setOpenDrawer("true")
-      return isRunning ? setIsRunning(false) : ""
-  }
+    setOpenDrawer("true");
+    return isRunning ? setIsRunning(false) : "";
+  };
 
   return (
     <div className="flex justify-center items-center lg:p-10 pt-16 ">
       <AlertDialog>
-      <Card className="bg-[#FFBD83] border-none">
-        <CardHeader>
-          <CardTitle>Cronómetro</CardTitle>
-          <CardDescription className="text-[#FF7800]">     
-           El objetivo diario son 8 horas 
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col justify-center items-center">
-          <p>Tiempo transcurrido:</p>
-          <h1 className="text-3xl font-bold w-full text-center">{formatTime(elapsedTime)}</h1>          
-        </CardContent>    
-        <CardFooter className="flex flex-col">
-          <div className="p-2">
-          <Button onClick={handleStartStop} className="m-2">
-            {isRunning ? "Pausar" : "Iniciar"}
-          </Button>
-          <Button onClick={handleReset} className="m-2 bg-transparent hover:bg-[#FF7800] border-[#FFA14F]" variant="outline">Reiniciar</Button>
-          </div>
-          <AlertDialogTrigger asChild>        
-          <Button onClick={handleSave} className="w-[79%]">
-            Guardar
-          </Button>
-          </AlertDialogTrigger>   
-        </CardFooter>
-      </Card>
-      {session?.user?.name ?    
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Guardar sesión del día {new Date().toLocaleDateString("en-GB")}</AlertDialogTitle>
-          <AlertDialogDescription>
-            Agregar titulo
-          </AlertDialogDescription>
-          <Input value={title} onChange={handleTagChange}></Input>
-          <AlertDialogDescription>
-            Agregar una descripción
-          </AlertDialogDescription>
-          <Textarea value={description} onChange={handleDescriptionChange}></Textarea>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleSend}>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-
-        : <LoginDrawer openDrawer={openDrawer}/>}
+        <Card className="bg-[#FFBD83] border-none">
+          <CardContent className="flex flex-col justify-center items-center pt-10">
+            <p>Tiempo transcurrido:</p>
+            <h1
+              className={`text-3xl font-bold w-full text-center ${orbitron.className}`}
+            >
+              {formatTime(elapsedTime)}
+            </h1>
+          </CardContent>
+          <CardFooter className="flex flex-col">
+            <div className="p-2">
+              <Button onClick={handleStartStop} className="m-2">
+                {isRunning ? <Pause width={18} height={18}/> : <Play width={18} height={18}/>}
+              </Button>
+              <Button
+                onClick={handleReset}
+                className="m-2 bg-transparent hover:bg-[#FF7800] border-[#FFA14F]"
+                variant="outline"
+              >
+                <RotateCcw width={18} height={18}/>
+              </Button>
+            </div>
+            <AlertDialogTrigger asChild>
+              <Button onClick={handleSave} className="w-[79%]">
+                Guardar &nbsp;
+                < Check width={15} height={15}/>
+              </Button>
+            </AlertDialogTrigger>
+          </CardFooter>
+        </Card>
+        <Card className="bg-[#FFBD83] border-none p-1 m-4 h-60 w-12 [writing-mode:vertical-lr] flex justify-center items-center">
+          <span>Objetivo :</span>&nbsp;
+          <span className="text-[#FF7800]">8 horas</span>
+        </Card>
+        <Card className="bg-transparent border-none l h-52 p-2 [writing-mode:vertical-lr] flex justify-center">
+          <FlameKindling width={20} height={20} />
+        </Card>
+        {session?.user?.name ? (
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>
+                Guardar sesión del día {new Date().toLocaleDateString("en-GB")}
+              </AlertDialogTitle>
+              <AlertDialogDescription>Agregar titulo</AlertDialogDescription>
+              <Input value={title} onChange={handleTagChange}></Input>
+              <AlertDialogDescription>
+                Agregar una descripción
+              </AlertDialogDescription>
+              <Textarea
+                value={description}
+                onChange={handleDescriptionChange}
+              ></Textarea>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleSend}>
+                Continue
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        ) : (
+          <LoginDrawer openDrawer={openDrawer} />
+        )}
       </AlertDialog>
-      
     </div>
   );
 };
