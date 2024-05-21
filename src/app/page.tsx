@@ -25,9 +25,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import { Zap,FlameKindling, Play, Pause, RotateCcw,  Check } from "lucide-react";
 import LoginDrawer from "@/components/loginDrawer";
-import { Orbitron } from "next/font/google";
+import { Orbitron, Quantico } from "next/font/google";
 
-const orbitron = Orbitron({
+const orbitron = Quantico({
   weight: "700",
   subsets: ["latin"],
 });
@@ -133,20 +133,20 @@ const IndexPage: React.FC = () => {
           </CardContent>
           <CardFooter className="flex flex-col">
             <div className="p-2">
-              <Button onClick={handleStartStop} className="m-2">
+              <Button size={"icon"} onClick={handleStartStop} className="m-2 rounded-full">
                 {isRunning ? <Pause width={18} height={18}/> : <Play width={18} height={18}/>}
               </Button>
               <Button
                 onClick={handleReset}
-                className="m-2 bg-transparent hover:bg-[#FF7800] border-[#FFA14F]"
+                className="m-2 bg-transparent rounded-full hover:bg-[#FF7800] border-[#FFA14F]"
+                size={"icon"} 
                 variant="outline"
               >
                 <RotateCcw width={18} height={18}/>
               </Button>
             </div>
             <AlertDialogTrigger asChild>
-              <Button onClick={handleSave} className="w-[79%]">
-                Guardar &nbsp;
+              <Button onClick={handleSave} className="w-[65%] rounded-full" size={"icon"} >             
                 < Check width={15} height={15}/>
               </Button>
             </AlertDialogTrigger>
@@ -154,11 +154,10 @@ const IndexPage: React.FC = () => {
         </Card>
         <Card className="bg-[#FFBD83] border-none p-1 m-4 h-60 w-12 [writing-mode:vertical-lr] flex justify-center items-center">
           <span>Objetivo :</span>&nbsp;
-          <span className="text-[#FF7800]">8 horas</span>
-        </Card>
-        <Card className="bg-transparent border-none l h-52 p-2 [writing-mode:vertical-lr] flex justify-center">
+          <span className="text-[#FF7800] pb-8">8 horas</span>
           <FlameKindling width={20} height={20} />
         </Card>
+
         {session?.user?.name ? (
           <AlertDialogContent>
             <AlertDialogHeader>
