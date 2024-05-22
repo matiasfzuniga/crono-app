@@ -81,11 +81,11 @@ export function DataTable<TData, TValue>({
           className="max-w-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         />
                <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          {/* <DropdownMenuTrigger asChild>
             <Button className="m-2 bg-[#FFBD83] hover:bg-[#FF7800] border-[#FFA14F] ml-auto" variant="outline">
               Columnas
             </Button>
-          </DropdownMenuTrigger>
+          </DropdownMenuTrigger> */}
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
