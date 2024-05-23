@@ -14,8 +14,8 @@ type State = {
             updateObj: (newObj: string) => set({ obj: newObj }),
         }),
         {
-            name: 'objetive', // name of the item in the storage (must be unique)
-            storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+            name: 'objetive', 
+            storage: createJSONStorage(() => sessionStorage),
           },
     )
 )
