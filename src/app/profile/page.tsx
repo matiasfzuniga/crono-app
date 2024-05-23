@@ -12,7 +12,7 @@ const Profile = () => {
 
   const updateObj = useStore((state) => state.updateObj)
   const obj = useStore(state => state.obj)
-  
+
   return (
     <div className="flex justify-center items-center flex-col lg:p-10 pt-16 h-[73vh]">
         <Image
@@ -21,7 +21,7 @@ const Profile = () => {
           width={350}
           height={350}
           loading="lazy"
-          className="w-52 h-52 rounded-full object-cover"
+          className="w-[180px] h-[180px] rounded-full object-cover"
         />
       <h1 className="text-2xl py-3 font-semibold">{session?.user?.name}</h1>
       <h3>Setear objetivo:</h3>

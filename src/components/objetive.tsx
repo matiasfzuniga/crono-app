@@ -45,9 +45,9 @@ const Objetive = () => {
 
       {showDynamicComponent && (
         <motion.section
-          className="flex gap-4 top-0 pl-8 pt-12 text-center"
-          initial={{ y: 200, x: 0, opacity: 0, position: "absolute" }}
-          animate={{ y: 205, opacity: 1 }}
+          className="flex gap-4 pl-8 text-center"
+          initial={{ y: -100, x: 0, opacity: 0, position: "absolute" }}
+          animate={{ y: -160, opacity: 1 }}
         >
           <span>
             {" "}

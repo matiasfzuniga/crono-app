@@ -129,10 +129,6 @@ const IndexPage: React.FC = () => {
   return (
     <div className="flex justify-center items-center lg:p-10 pt-16 h-[73vh]">
       <AlertDialog>
-      {/* <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
-         <ChevronLeft/>
-        </Card> */}
-      
         <InputTag/>
         <Card className="bg-[#FFBD83] border-none shadow-lg">
           <CardContent className="flex flex-col justify-center items-center pt-10">
@@ -177,13 +173,6 @@ const IndexPage: React.FC = () => {
           </CardFooter>
         </Card>
         <Objetive/>
-        {/* <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
-          <span className="text-[#FF7800] border border-[#FF7800] p-1 rounded-full h-8 w-8 text-center text-md">
-            10
-          </span>
-          <span className="[writing-mode:vertical-lr] font-semibold">objetivo</span>
-          <FlameKindling width={20} height={20} />
-        </Card> */}
 
         {session?.user?.name ? (
           <AlertDialogContent>
