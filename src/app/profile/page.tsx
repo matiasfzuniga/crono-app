@@ -9,7 +9,6 @@ import { useStore } from "@/store/objetiveStore";
 
 const Profile = () => {
   const { data: session } = useSession();
-
   const updateObj = useStore((state) => state.updateObj)
   const obj = useStore(state => state.obj)
 

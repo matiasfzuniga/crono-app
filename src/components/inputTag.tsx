@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useTagInput from "@/hooks/useTag";
 import { TagField } from "./tagField";
+import { useStore } from "@/store/tagStore";
 
 const MAX_TAGS = 5;
 
 const InputTag = () => {
-    const controls = useAnimation();
-    const [showDynamicComponent, setShowDynamicComponent] = React.useState(false);
-    const { tags, handleAddTag, handleRemoveTag } = useTagInput(MAX_TAGS);
+  const controls = useAnimation();
+  const [showDynamicComponent, setShowDynamicComponent] = React.useState(false);
+  const { tags, handleAddTag, handleRemoveTag } = useTagInput(MAX_TAGS);
+  const updateTag = useStore((state) => state.updateTag);
+  const tag = useStore((state) => state.tag);
 
   const handleButtonClick = async () => {
     setShowDynamicComponent(!showDynamicComponent);
@@ -18,10 +21,9 @@ const InputTag = () => {
       x: showDynamicComponent ? 0 : -250,
     });
   };
-  const handleSubmit = () => {
-    // Send tags to the backend
-    console.log(tags);
-  };
+  useEffect(() => {
+    updateTag(tags);
+  }, [tags, updateTag]);
 
   return (
     <div>
@@ -32,7 +34,7 @@ const InputTag = () => {
       >
         <motion.button animate={controls} onClick={handleButtonClick}>
           <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
-            {showDynamicComponent ? <ChevronRight /> : <ChevronLeft />}          
+            {showDynamicComponent ? <ChevronRight /> : <ChevronLeft />}
           </Card>
         </motion.button>
       </motion.section>
@@ -43,21 +45,14 @@ const InputTag = () => {
           animate={{ y: -240, opacity: 1 }}
         >
           <form>
-        <TagField
-          tags={tags}
-          addTag={handleAddTag}
-          removeTag={handleRemoveTag}
-          maxTags={MAX_TAGS}
-        />
-        {/* <button
-          onClick={handleSubmit}
-          className="bg-blue-600 text-white outline-none border-none p-2 mt-4 rounded-lg"
-        >
-          guardar
-        </button> */}
-      </form>
+            <TagField
+              tags={tags}
+              addTag={handleAddTag}
+              removeTag={handleRemoveTag}
+              maxTags={MAX_TAGS}
+            />
+          </form>
         </motion.section>
-        
       )}
     </div>
   );

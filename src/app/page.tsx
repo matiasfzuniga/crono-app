@@ -3,10 +3,7 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import {
   AlertDialog,
@@ -23,16 +20,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
-import {
-  Play,
-  Pause,
-  RotateCcw,
-  Check,
-} from "lucide-react";
+import { Play, Pause, RotateCcw, Check } from "lucide-react";
 import LoginDrawer from "@/components/loginDrawer";
 import { Quantico } from "next/font/google";
 import Objetive from "@/components/objetive";
 import InputTag from "@/components/inputTag";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useStore } from "@/store/tagStore";
+
 
 const quantico = Quantico({
   weight: "700",
@@ -47,7 +42,7 @@ const IndexPage: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState("");
   const [description, setDescription] = useState("");
   const { data: session } = useSession();
-
+  const tag = useStore(state => state.tag)
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
@@ -129,7 +124,7 @@ const IndexPage: React.FC = () => {
   return (
     <div className="flex justify-center items-center lg:p-10 pt-16 h-[73vh]">
       <AlertDialog>
-        <InputTag/>
+        <InputTag />
         <Card className="bg-[#FFBD83] border-none shadow-lg">
           <CardContent className="flex flex-col justify-center items-center pt-10">
             <p className="font-semibold">Tiempo transcurrido:</p>
@@ -172,7 +167,7 @@ const IndexPage: React.FC = () => {
             </AlertDialogTrigger>
           </CardFooter>
         </Card>
-        <Objetive/>
+        <Objetive />
 
         {session?.user?.name ? (
           <AlertDialogContent>
@@ -180,15 +175,25 @@ const IndexPage: React.FC = () => {
               <AlertDialogTitle>
                 Guardar sesión del día {new Date().toLocaleDateString("en-GB")}
               </AlertDialogTitle>
-              <AlertDialogDescription>Agregar titulo</AlertDialogDescription>
+              <AlertDialogDescription className="text-gray-800">Agregar titulo</AlertDialogDescription>
               <Input value={title} onChange={handleTagChange}></Input>
-              <AlertDialogDescription>
+              <AlertDialogDescription className="text-gray-800">
                 Agregar una descripción
               </AlertDialogDescription>
               <Textarea
                 value={description}
                 onChange={handleDescriptionChange}
               ></Textarea>
+              { tag.length != 0 ? <div className="flex items-center space-x-2">
+              <Checkbox id="terms" checked={true}/>
+              <label
+                htmlFor="terms"
+                className="text-sm text-gray-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Agregar tags
+              </label>
+              </div> : ''}
+              
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
