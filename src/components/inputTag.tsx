@@ -37,7 +37,6 @@ const InputTag = () => {
         </motion.button>
       </motion.section>
       {showDynamicComponent && (
-   
         <motion.section
           className="flex justify-center items-center"
           initial={{ y: -180, x: -162, opacity: 0, position: "absolute" }}

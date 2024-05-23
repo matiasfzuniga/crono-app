@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FlameKindling } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useStore } from "@/store/objetiveStore";
 
 const Objetive = () => {
   const controls = useAnimation();
@@ -13,6 +14,8 @@ const Objetive = () => {
       x: showDynamicComponent ? 0 : 170,
     });
   };
+  const obj = useStore((state) => state.obj)
+
   return (
     <div>
       <motion.section
@@ -23,7 +26,7 @@ const Objetive = () => {
         <motion.button animate={controls} onClick={handleButtonClick}>
           <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
             <span className="text-[#FF7800] border border-[#FF7800] p-1 rounded-full h-8 w-8 text-center text-md">
-              10
+              {obj}
             </span>
             {showDynamicComponent ? (
               <span className="[writing-mode:vertical-lr] font-semibold invisible">
@@ -48,7 +51,7 @@ const Objetive = () => {
         >
           <span>
             {" "}
-            El objetivo de hoy <br /> son 10 horas
+            El objetivo de hoy <br /> son {obj} horas
           </span>
         </motion.section>
       )}
