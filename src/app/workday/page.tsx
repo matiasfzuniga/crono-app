@@ -1,10 +1,10 @@
-import { Jornada, columns } from "./columns";
+import { Workday, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { headers } from "next/headers"
 
-async function getData(): Promise<Jornada[]> {
+async function getData(): Promise<Workday[]> {
   // Fetch data from your API here.
-    const response = await fetch("http://localhost:3000/api/jornada", {
+    const response = await fetch("http://localhost:3000/api/workday", {
     method: 'GET', 
     headers:headers()
     });

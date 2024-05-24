@@ -4,14 +4,14 @@ import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export type Jornada = {
+export type Workday = {
   day: string
   time: string
   description: string
   title: string
 }
  
-export const columns: ColumnDef<Jornada>[] = [
+export const columns: ColumnDef<Workday>[] = [
   {
     accessorKey: "title",
     header: "título",

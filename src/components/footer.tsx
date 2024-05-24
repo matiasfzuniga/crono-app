@@ -8,7 +8,7 @@ const Footer = () => {
     <Link href={"/"}>
     <Home width={60} height={60}/>      
     </Link>
-    <Link href={"/jornada"}>
+    <Link href={"/workday"}>
     <CalendarClock width={60} height={60}/>
     </Link>
     <Link href={"/profile"}>

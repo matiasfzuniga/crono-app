@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { day, title, description, time } = body;
 
-    const nuevaJornada = await prisma.jornada.create({
+    const Workday = await prisma.workday.create({
       data: {
         day,
         time,
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json(nuevaJornada);
+    return NextResponse.json(Workday);
   } catch (error) {
     console.error("Error al procesar la solicitud POST:", error);
     return NextResponse.error();

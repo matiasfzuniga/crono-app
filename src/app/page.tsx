@@ -42,7 +42,7 @@ const IndexPage: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState("");
   const [description, setDescription] = useState("");
   const { data: session } = useSession();
-  const tag = useStore(state => state.tag)
+  const tags = useStore(state => state.tag)
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
@@ -99,8 +99,9 @@ const IndexPage: React.FC = () => {
         title,
         description,
         time: formatTime(elapsedTime),
+        tags:tags,
       };
-      const response = await fetch("api/routes", {
+      const response = await fetch("api/workday", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -168,7 +169,6 @@ const IndexPage: React.FC = () => {
           </CardFooter>
         </Card>
         <Objetive />
-
         {session?.user?.name ? (
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -176,7 +176,7 @@ const IndexPage: React.FC = () => {
                 Guardar sesión del día {new Date().toLocaleDateString("en-GB")}
               </AlertDialogTitle>
               <AlertDialogDescription className="text-gray-800">Agregar titulo</AlertDialogDescription>
-              <Input value={title} onChange={handleTagChange}></Input>
+              <Input value={title} onChange={handleTagChange} />
               <AlertDialogDescription className="text-gray-800">
                 Agregar una descripción
               </AlertDialogDescription>
@@ -184,7 +184,7 @@ const IndexPage: React.FC = () => {
                 value={description}
                 onChange={handleDescriptionChange}
               ></Textarea>
-              { tag.length != 0 ? <div className="flex items-center space-x-2">
+              { tags.length != 0 ? <div className="flex items-center space-x-2">
               <Checkbox id="terms" checked={true}/>
               <label
                 htmlFor="terms"

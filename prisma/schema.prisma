@@ -7,16 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Jornada {
-  id           Int      @id @default(autoincrement())
+model Workday {
+  id           Int             @id @default(autoincrement())
   day          String
   time         String
   description  String
   title        String
-  userAuthor   User?    @relation("jornadas",fields: [userAuthorId], references: [id])
   userAuthorId String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  tags         Tag[]
+  userAuthor   User?           @relation("Workdays", fields: [userAuthorId], references: [id])
+}
+
+model Tag {
+  id       Int             @id @default(autoincrement())
+  name     String          @unique
+  workdays Workday[]
 }
 
 model Account {
@@ -25,15 +32,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -62,12 +68,12 @@ model User {
   id        String    @id @default(cuid())
   name      String
   email     String    @unique
-  jornadas  Jornada[] @relation("jornadas")
   password  String
-  accounts  Account[]
-  sessions  Session[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  workdays  Workday[] @relation("Workdays")
+  accounts  Account[]
+  sessions  Session[]
 
   @@map("users")
 }
