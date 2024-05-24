@@ -28,7 +28,6 @@ import InputTag from "@/components/inputTag";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useStore } from "@/store/tagStore";
 
-
 const quantico = Quantico({
   weight: "700",
   subsets: ["latin"],
@@ -43,6 +42,7 @@ const IndexPage: React.FC = () => {
   const [description, setDescription] = useState("");
   const { data: session } = useSession();
   const tags = useStore(state => state.tag)
+  
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
