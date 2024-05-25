@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Card } from "@/components/ui/card";
@@ -6,14 +7,11 @@ import useTagInput from "@/hooks/useTag";
 import { TagField } from "./tagField";
 import { useStore } from "@/store/tagStore";
 
-const MAX_TAGS = 5;
-
 const InputTag = () => {
   const controls = useAnimation();
   const [showDynamicComponent, setShowDynamicComponent] = React.useState(false);
-  const { tags, handleAddTag, handleRemoveTag } = useTagInput(MAX_TAGS);
+  const { tags, handleAddTag, handleRemoveTag } = useTagInput(5,[]);
   const updateTag = useStore((state) => state.updateTag);
-  const tag = useStore((state) => state.tag);
 
   const handleButtonClick = async () => {
     setShowDynamicComponent(!showDynamicComponent);
@@ -49,7 +47,7 @@ const InputTag = () => {
               tags={tags}
               addTag={handleAddTag}
               removeTag={handleRemoveTag}
-              maxTags={MAX_TAGS}
+              maxTags={5}
             />
           </form>
         </motion.section>

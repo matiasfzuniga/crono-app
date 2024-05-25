@@ -139,7 +139,7 @@ export function DataTable<TData, TValue>({
                         )}                    
                     </TableCell>
                   ))}
-                  <td><Button variant="secondary" className="m-1 bg-orange-400 hover:bg-orange-500" onClick={()=> router.push(`workday/${row.id}`)}>Revisar</Button></td>              
+                  <td><Button variant="secondary" className="m-1 bg-orange-400 hover:bg-orange-500" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
                 </TableRow> 
               ))
             ) : (

@@ -23,7 +23,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
       if (
         userInput.trim() !== "" &&
         userInput.length <= 12 &&
-        tags.length < maxTags
+        tags?.length < maxTags
       ) {
         addTag(userInput);
         setUserInput(""); 
@@ -33,7 +33,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
 
   return (
     <div className="flex flex-col w-[250px]">
-        <span className="pb-2">{ tags.length < maxTags
+        <span className="pb-2">{ tags?.length < maxTags
             ? "Agrega un tag"
             : `solo puedes agregar ${maxTags} tags`}</span>
       <Input
@@ -45,11 +45,11 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
         onKeyDown={handleKeyPress}
         onChange={handleInputChange}
         value={userInput}
-        disabled={tags.length === maxTags}
+        disabled={tags?.length === maxTags}
       />
 
       <div className="flex flex-row flex-wrap gap-3 mt-4">
-        {tags.map((tag: string, index: number) => (
+        {tags?.map((tag: string, index: number) => (
           <span
             key={`${index}-${tag}`}
             className="inline-flex items-start justify-start px-3 py-2 rounded-lg text-sm shadow-sm font-medium bg-[#FFBD83] text-gray-800 mr-2"

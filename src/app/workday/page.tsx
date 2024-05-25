@@ -1,10 +1,8 @@
 import { Workday, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { headers } from "next/headers"
-import { useQuery } from '@tanstack/react-query'
 
 async function getData(): Promise<Workday[]> {
-  // Fetch data from your API here.
     const response = await fetch("http://localhost:3000/api/workday", {
     method: 'GET', 
     headers:headers()

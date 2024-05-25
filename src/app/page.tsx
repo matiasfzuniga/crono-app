@@ -184,7 +184,7 @@ const IndexPage: React.FC = () => {
                 value={description}
                 onChange={handleDescriptionChange}
               ></Textarea>
-              { tags.length != 0 ? <div className="flex items-center space-x-2">
+              { tags?.length !== 0 ? <div className="flex items-center space-x-2">
               <Checkbox id="terms" checked={true}/>
               <label
                 htmlFor="terms"

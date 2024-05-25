@@ -5,7 +5,6 @@ import { NextAuthProvider } from "./providers";
 import Header from "@/components/header";
 import { getServerSession } from "next-auth";
 import Footer from "@/components/footer";
-import Providers from "@/lib/provider";
 
 const inter = Viga({ subsets: ['latin'], weight:['400'] });
 
@@ -25,9 +24,9 @@ export default async function RootLayout({
       <Header session={session}/>
       <div className="bg-[#FF7800] rounded-lg mx-2">
         <NextAuthProvider>
-          <Providers>
+   
             {children}
-          </Providers>
+    
         </NextAuthProvider>
       </div> 
      <Footer/>  
