@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { UserRound,LogOut,Pencil } from "lucide-react";
+import { UserRound,Pencil } from "lucide-react";
+import LogOutComponent from "./logOut";
 
 const Header = async ({ session }: any) => {
   let fecha = Date.now();
@@ -33,7 +34,7 @@ const Header = async ({ session }: any) => {
               <DropdownMenuItem className="px-4 py-2 focus:bg-[#ffa04d]">
                 <Link href={"/profile"}>Config</Link><Pencil className="pl-2"/>
               </DropdownMenuItem>
-              <DropdownMenuItem className="px-4 py-2 focus:bg-[#ffa04d]">Logout<LogOut className="pl-2"/></DropdownMenuItem>
+              <DropdownMenuItem className="px-4 py-2 focus:bg-[#ffa04d]" >Logout<LogOutComponent/></DropdownMenuItem>
             </DropdownMenuHeadContent>
           </DropdownMenu>
           </div>

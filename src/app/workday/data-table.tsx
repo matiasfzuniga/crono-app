@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { useRouter } from 'next/navigation'
+import { motion} from "framer-motion";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -70,7 +71,9 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="pt-10 lg:px-36">
+    <motion.div initial={{ y: 50, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.7 }} className="pt-10 lg:px-36">
       <div className="flex items-center py-8">
         <Input
           placeholder="Buscar..."
@@ -173,6 +176,6 @@ export function DataTable<TData, TValue>({
           <ChevronRight />
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 }

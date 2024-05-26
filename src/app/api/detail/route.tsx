@@ -20,31 +20,47 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const body = await req.json();
     const { id,tags } = body;
     try{
-      const [deletedTags, data] = await prisma.$transaction([
-        prisma.workday.update({
-          where: { id: id },
-          data: {
-            tags: {
-              deleteMany: {},
-            },
-          },
-        }),
-        prisma.workday.update({
-          where: { id: id },
-          data: {
-            tags: {
-              create: tags.map((tag: string) => ({
-                name: tag,
-              })),
-            },
-          },
-          include: {
-            tags: true,
-          },
-        }),
-      ]);
 
-      return NextResponse.json(data)
+      const existingTags = await prisma.tag.findMany({
+        where: {
+          name: {
+            in: tags,
+          },
+        },
+      });
+  
+      const existingTagNames = existingTags.map(tag => tag.name);
+  
+      const newTags = tags.filter((tag:string) => !existingTagNames.includes(tag));
+  
+      const tagOperations = [
+        ...newTags.map((tag:string) => prisma.tag.create({
+          data: {
+            name: tag,
+          },
+        })),
+      ];
+  
+      const createdTags = await prisma.$transaction(tagOperations);
+  
+      const allTags = [
+        ...existingTags,
+        ...createdTags,
+      ];
+  
+      const updatedWorkday = await prisma.workday.update({
+        where: { id: id },
+        data: {
+          tags: {
+            set: allTags.map(tag => ({ id: tag.id })),
+          },
+        },
+        include: {
+          tags: true,
+        },
+      });
+      
+      return NextResponse.json(updatedWorkday);
     }catch(error){
       console.error("Error al procesar la solicitud POST:", error);
       return NextResponse.error();
