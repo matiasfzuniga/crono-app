@@ -1,18 +1,25 @@
 import React from 'react'
-import { CalendarClock, SquareUser, Home } from 'lucide-react';
+import { CalendarCheck,AlarmClock,BarChart4 } from 'lucide-react';
 import Link from "next/link";
+import { Button } from './ui/button';
 
 const Footer = () => {
   return (
-    <div className="bg-[#FF7800] h-[150px] rounded-lg mx-2 my-4 flex justify-center items-center gap-8">
+    <div className="bg-[#FF7800] h-[150px] rounded-lg mx-2 my-4 flex justify-center items-center gap-4">
     <Link href={"/"}>
-    <Home width={60} height={60}/>      
+      <Button variant={"ghost"} size={"icon"} className='h-16 w-16 rounded-full bg-[#27201a] hover:bg-[#ff5e00]'>
+    <AlarmClock width={35} height={35} color='#ffa810'/>      
+    </Button>
     </Link>
     <Link href={"/workday"}>
-    <CalendarClock width={60} height={60}/>
+    <Button variant={"ghost"} size={"icon"} className='h-16 w-16 rounded-full bg-[#27201a] hover:bg-[#ff5e00]'>
+    <CalendarCheck width={35} height={35} color='#ffa810'/>
+    </Button>
     </Link>
-    <Link href={"/profile"}>
-    <SquareUser width={60} height={60}/>
+    <Link href={"/dashboard"}>
+    <Button variant={"ghost"} size={"icon"} className='h-16 w-16 rounded-full bg-[#27201a] hover:bg-[#ff5e00]'>
+    <BarChart4 width={35} height={35} color='#ffa810'/>
+    </Button>
     </Link>
   </div> 
   )
