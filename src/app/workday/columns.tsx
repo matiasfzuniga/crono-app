@@ -23,7 +23,9 @@ export const columns: ColumnDef<Workday>[] = [
     accessorKey: "description",
     header: "descripción",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("description")}</div>
+      <div className="w-48">
+      <div className="overflow-hidden text-ellipsis whitespace-nowrap">{row.getValue("description")}</div>
+      </div>
     ),
   },
   {

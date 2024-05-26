@@ -176,13 +176,14 @@ const IndexPage: React.FC = () => {
                 Guardar sesión del día {new Date().toLocaleDateString("en-GB")}
               </AlertDialogTitle>
               <AlertDialogDescription className="text-gray-800">Agregar titulo</AlertDialogDescription>
-              <Input value={title} onChange={handleTagChange} />
+              <Input value={title} minLength={2} maxLength={20} onChange={handleTagChange} />
               <AlertDialogDescription className="text-gray-800">
                 Agregar una descripción
               </AlertDialogDescription>
               <Textarea
                 value={description}
                 onChange={handleDescriptionChange}
+                maxLength={300}
               ></Textarea>
               { tags?.length !== 0 ? <div className="flex items-center space-x-2">
               <Checkbox id="terms" checked={true}/>
@@ -192,8 +193,7 @@ const IndexPage: React.FC = () => {
               >
                 Agregar tags
               </label>
-              </div> : ''}
-              
+              </div> : ''}          
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>

@@ -52,7 +52,7 @@ export default async function WorkDayPage({
           <h1 className="text-xl font-semibold pb-4 underline underline-offset-2 decoration-orange-800">
             tags
           </h1>
-          <TagDetail params={data}/>
+          <TagDetail params={data} id={params.id}/>
         </div>
       </div>
     </div>

@@ -16,7 +16,5 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       return NextResponse.error();
     }
   }
-  
-  
-  
+
   

@@ -54,7 +54,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
             key={`${index}-${tag}`}
             className="inline-flex items-start justify-start px-3 py-2 rounded-lg text-sm shadow-sm font-medium bg-[#FFBD83] text-gray-800 mr-2"
           >
-            {tag}
+            {tag.trim()}
             <button
               className="ml-2 hover:text-gray-100"
               onClick={() => removeTag(tag)}

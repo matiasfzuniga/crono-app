@@ -14,6 +14,41 @@ export async function GET(req: NextRequest, res: NextResponse) {
       return NextResponse.error();
     }
   }
-  
-  
+     
+  export async function POST (req:NextRequest){
+    
+    const body = await req.json();
+    const { id,tags } = body;
+    try{
+      const [deletedTags, data] = await prisma.$transaction([
+        prisma.workday.update({
+          where: { id: id },
+          data: {
+            tags: {
+              deleteMany: {},
+            },
+          },
+        }),
+        prisma.workday.update({
+          where: { id: id },
+          data: {
+            tags: {
+              create: tags.map((tag: string) => ({
+                name: tag,
+              })),
+            },
+          },
+          include: {
+            tags: true,
+          },
+        }),
+      ]);
+
+      return NextResponse.json(data)
+    }catch(error){
+      console.error("Error al procesar la solicitud POST:", error);
+      return NextResponse.error();
+    }
+  }
+
   
