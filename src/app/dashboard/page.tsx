@@ -17,13 +17,12 @@ async function getData() {
 
 const page = async () => {
   const data = await getData()
-  console.log(data)
   return (
     <div className="flex justify-center items-center flex-col lg:p-10 pt-16 h-[73vh]">
        <h1 className="text-3xl pb-12">Estadísticas</h1>
       <div className="flex justify-center gap-4 pb-5">
-        <InfoDash/>
-        <Pie params={data}/>
+        <InfoDash params={data.totalTimeInHoursThisMonth}/>
+        <Pie params={data.tagCountMap}/>
       </div>
     </div>
   );

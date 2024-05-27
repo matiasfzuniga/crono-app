@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { startOfMonth, endOfMonth } from 'date-fns';
+
+function timeToSeconds(time: string): number {
+  const [hours, minutes, seconds] = time.split(':').map(Number);
+  return (hours * 3600) + (minutes * 60) + seconds;
+  
+}
+function secondsToHours(seconds: number): number {
+  return seconds / 3600;
+}
 
 export async function GET(req: NextRequest, res: NextResponse) {
     const session = await getServerSession(authOptions);
@@ -10,7 +20,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       }   
       try {
         const userEmail = session.user.email;
-
+    
         const userTags = await prisma.tag.findMany({
           where: {
             workdays: {
@@ -27,11 +37,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
             workdays: {
               select: {
                 id: true,
+                time: true,
               },
             },
           },
         });
-        
+    
         const tagCountMap = userTags.reduce((acc, tag) => {
           if (tag.name) {
             if (!acc[tag.name]) {
@@ -42,7 +53,33 @@ export async function GET(req: NextRequest, res: NextResponse) {
           return acc;
         }, {} as { [key: string]: number });
     
-        return NextResponse.json(tagCountMap);
+        const currentDate = new Date();
+        const startOfCurrentMonth = startOfMonth(currentDate);
+        const endOfCurrentMonth = endOfMonth(currentDate);
+    
+        const workdaysThisMonth = await prisma.workday.findMany({
+          where: {
+            userAuthor: {
+              email: userEmail,
+            },
+            createdAt: {
+              gte: startOfCurrentMonth,
+              lte: endOfCurrentMonth,
+            },
+          },
+          select: {
+            time: true,
+          },
+        });
+    
+        const totalTimeInSecondsThisMonth = workdaysThisMonth.reduce((total, workday) => {
+          return total + timeToSeconds(workday.time);
+        }, 0);
+    
+        const totalTimeInHoursThisMonth = secondsToHours(totalTimeInSecondsThisMonth);
+    
+        
+    return NextResponse.json({ tagCountMap, totalTimeInHoursThisMonth });
       } catch (error) {
         console.error("Error al procesar la solicitud GET:", error);
         return NextResponse.error();
