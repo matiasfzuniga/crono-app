@@ -19,8 +19,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         return NextResponse.error();
       }   
       try {
-        const userEmail = session.user.email;
-    
+        const userEmail = session.user.email;   
         const userTags = await prisma.tag.findMany({
           where: {
             workdays: {
