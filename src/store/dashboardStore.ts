@@ -25,7 +25,7 @@ export const useStore = create<StoreState>((set) => ({
       newYear += 1;
     }
 
-    window.location.search = `?year=${newYear}&month=${newMonth + 1}`;
+    window.location.search = `?y=${newYear}&m=${newMonth + 1}`;
 
     setTimeout(() => {
       set({ currentMonth: newMonth, currentYear: newYear });

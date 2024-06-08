@@ -17,8 +17,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
   const { searchParams } = new URL(req.url);
 
-    const yearParam = searchParams.get("year");
-    const monthParam = searchParams.get("month");
+    const yearParam = searchParams.get("y");
+    const monthParam = searchParams.get("m");
 
   if (!yearParam || !monthParam) {
     return  NextResponse.error();
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         time: true,
       },
     });
-    
+
     const totalTimeInSecondsThisMonth = workdays.reduce(
       (total, workday) => {
         return total + timeToSeconds(workday.time);

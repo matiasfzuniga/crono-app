@@ -38,8 +38,8 @@ const InfoDash: React.FC<InfoDashProps> = ({ params,prevData }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const yearParam = searchParams.get("year");
-    const monthParam = searchParams.get("month");
+    const yearParam = searchParams.get("y");
+    const monthParam = searchParams.get("m");
 
     if (yearParam && monthParam) {
       setCurrentYear(parseInt(yearParam, 10));

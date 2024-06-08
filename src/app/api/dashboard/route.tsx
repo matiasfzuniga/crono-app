@@ -20,8 +20,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const yearParam = searchParams.get("year");
-    const monthParam = searchParams.get("month");
+    const yearParam = searchParams.get("y");
+    const monthParam = searchParams.get("m");
 
     const year = yearParam ? parseInt(yearParam, 10) : new Date().getFullYear();
 

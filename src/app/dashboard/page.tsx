@@ -4,7 +4,7 @@ import InfoDash from "@/components/infoDash";
 import { headers } from "next/headers";
 
 async function getData(year: number, month: number) {
-  const response = await fetch(`http://localhost:3000/api/dashboard?year=${year}&month=${month}`, {
+  const response = await fetch(`http://localhost:3000/api/dashboard?y=${year}&m=${month}`, {
     method: "GET",
     headers: headers(),
   });
@@ -16,7 +16,7 @@ async function getData(year: number, month: number) {
 }
 
 async function fetchMonthlyHours (year: number, month: number) {
-  const response = await fetch(`http://localhost:3000/api/hours?year=${year}&month=${month}`, {
+  const response = await fetch(`http://localhost:3000/api/hours?y=${year}&m=${month}`, {
     method: 'GET',
     headers: headers(),
   });
@@ -25,9 +25,9 @@ async function fetchMonthlyHours (year: number, month: number) {
 };
 
 
-const page = async ({ searchParams }: { searchParams: { year?: string, month?: string } }) => {
-  const year = parseInt(searchParams.year || new Date().getFullYear().toString(), 10);
-  const month = parseInt(searchParams.month || (new Date().getMonth() + 1).toString(), 10);
+const page = async ({ searchParams }: { searchParams: { y?: string, m?: string } }) => {
+  const year = parseInt(searchParams.y || new Date().getFullYear().toString(), 10);
+  const month = parseInt(searchParams.m || (new Date().getMonth() + 1).toString(), 10);
   const prevData = await fetchMonthlyHours(year,month-1)
   const data = await getData(year, month);
   return (
