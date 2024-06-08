@@ -3,8 +3,8 @@ import Pie from "@/components/pie";
 import InfoDash from "@/components/infoDash";
 import { headers } from "next/headers";
 
-async function getData() {
-  const response = await fetch("http://localhost:3000/api/dashboard", {
+async function getData(year: number, month: number) {
+  const response = await fetch(`http://localhost:3000/api/dashboard?year=${year}&month=${month}`, {
     method: "GET",
     headers: headers(),
   });
@@ -15,13 +15,26 @@ async function getData() {
   return datos;
 }
 
-const page = async () => {
-  const data = await getData()
+async function fetchMonthlyHours (year: number, month: number) {
+  const response = await fetch(`http://localhost:3000/api/hours?year=${year}&month=${month}`, {
+    method: 'GET',
+    headers: headers(),
+  });
+  const data = await response.json();
+  return data.totalHours;
+};
+
+
+const page = async ({ searchParams }: { searchParams: { year?: string, month?: string } }) => {
+  const year = parseInt(searchParams.year || new Date().getFullYear().toString(), 10);
+  const month = parseInt(searchParams.month || (new Date().getMonth() + 1).toString(), 10);
+  const prevData = await fetchMonthlyHours(year,month-1)
+  const data = await getData(year, month);
   return (
     <div className="flex justify-center items-center flex-col lg:p-10 pt-16 h-[73vh]">
        <h1 className="text-3xl pb-12">Estadísticas</h1>
       <div className="flex justify-center gap-4 pb-5">
-        <InfoDash params={data.totalTimeInHoursThisMonth}/>
+        <InfoDash params={data.totalTimeInHoursThisMonth} prevData={prevData}/>
         <Pie params={data.tagCountMap}/>
       </div>
     </div>
