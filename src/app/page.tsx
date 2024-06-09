@@ -40,8 +40,8 @@ const IndexPage: React.FC = () => {
   const [description, setDescription] = useState("");
   const { data: session } = useSession();
   const tags = useTagStore((state) => state.tag);
-  const { hour,setHour } = useTimeStore();
-  const obj = useStore((state) => state.obj)
+  const { hour, setHour } = useTimeStore();
+  const obj = useStore((state) => state.obj);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -49,7 +49,7 @@ const IndexPage: React.FC = () => {
       interval = setInterval(() => {
         setElapsedTime(Date.now() - (startTime || Date.now()));
       }, 1000);
-      }
+    }
     setHour(Math.floor(elapsedTime / 3600000));
     return () => clearInterval(interval);
   }, [isRunning, startTime, elapsedTime, setHour]);
@@ -68,10 +68,10 @@ const IndexPage: React.FC = () => {
     )}`;
   };
 
-  const statusObjetive = (obj:number, time:number) => {
-    if(obj === time)return 'complete';
-    if(obj > time) return 'incomplete';
-    return 'exceeded';
+  const statusObjetive = (obj: number, time: number) => {
+    if (obj === time) return "complete";
+    if (obj > time) return "incomplete";
+    return "exceeded";
   };
 
   const handleStartStop = () => {
@@ -108,7 +108,7 @@ const IndexPage: React.FC = () => {
         description,
         time: formatTime(elapsedTime),
         tags: tags,
-        status: statusObjetive(parseInt(obj),hour)
+        status: statusObjetive(parseInt(obj), hour),
       };
       const response = await fetch("api/workday", {
         method: "POST",
@@ -135,7 +135,15 @@ const IndexPage: React.FC = () => {
     <div className="flex justify-center items-center lg:p-10 pt-16 h-[73vh]">
       <AlertDialog>
         <InputTag />
-        <Card className="bg-[#FFBD83] border-none shadow-lg">
+        <Card
+          className={`${
+            parseInt(obj) == hour
+              ? "bg-[#2E8B57]"
+              : parseInt(obj) > hour
+              ? "bg-[#ffae44]"
+              : "bg-[#008B8B]"
+          } border-none shadow-lg`}
+        >
           <CardContent className="flex flex-col justify-center items-center pt-10">
             <p className="font-semibold">Tiempo transcurrido:</p>
             <h1
@@ -159,7 +167,13 @@ const IndexPage: React.FC = () => {
               </Button>
               <Button
                 onClick={handleReset}
-                className="m-2 bg-transparent rounded-full hover:bg-[#FF7800] border-[#FF7800]"
+                className={`m-2 bg-transparent rounded-full ${
+                  parseInt(obj) == hour
+                    ? "border-[#A5D6A7] text-[#A5D6A7] hover:bg-[#A5D6A7]"
+                    : parseInt(obj) > hour
+                    ? "border-[#FF7800] text-[#FF7800] hover:bg-[#ff5e00]"
+                    : "border-[#81D4FA] text-[#81D4FA] hover:bg-[#81d4fa2a]"
+                }`}
                 size={"icon"}
                 variant="outline"
               >

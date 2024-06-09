@@ -5,14 +5,17 @@ import "chart.js/auto";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Tag } from "lucide-react";
-const Pie = dynamic(
+
+const Doughnut = dynamic(
   () => import("react-chartjs-2").then((mod) => mod.Doughnut),
   {
     ssr: false,
   }
 );
 
-const pie = ({ params }: { params: string[] }) => {
+
+const Pie = ({ params }: { params: string[] }) => {
+  
   const keys = Object.keys(params).map((key) => key.trim());
   const values = Object.values(params);
   const data = {
@@ -22,7 +25,7 @@ const pie = ({ params }: { params: string[] }) => {
         label: "cantidad",
         data: values,
         borderWidth: 1,
-        borderColor: "#ff5e00",
+        borderColor: "#070013",
         backgroundColor: [
           "rgb(255, 60, 102)",
           "rgb(54, 162, 235)",
@@ -33,6 +36,7 @@ const pie = ({ params }: { params: string[] }) => {
       },
     ],
   };
+
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
@@ -40,12 +44,12 @@ const pie = ({ params }: { params: string[] }) => {
       transition={{ duration: 0.8 }}
       className="flex justify-center items-center flex-col"
     >
-      <Card className="bg-[#FFBD83] shadow-lg border-none p-6">
+      <Card className={`bg-[#f3f3f3] shadow-lg border-none p-6`}>
         <div className="flex justify-between items-center">
           <h1 className="text-xl">Tags más utilizados</h1>
           <Tag width={15} height={15}/>
         </div>
-        <Pie
+        <Doughnut
           data={data}
           options={{
             plugins: {
@@ -66,4 +70,4 @@ const pie = ({ params }: { params: string[] }) => {
   );
 };
 
-export default pie;
+export default Pie;

@@ -61,7 +61,7 @@ const InfoDash: React.FC<InfoDashProps> = ({ params,prevData,status }) => {
       transition={{ duration: 0.8 }}
       className="flex flex-col gap-4"
     >
-      <Card className="bg-[#FFBD83] shadow-lg border-none p-4">
+      <Card className="bg-[#f3f3f3] shadow-lg border-none p-4">
         <div className="flex justify-between items-center">
           <h1>Horas en {monthNames[currentMonth]}</h1>
           <Activity width={15} height={15} />
@@ -71,7 +71,7 @@ const InfoDash: React.FC<InfoDashProps> = ({ params,prevData,status }) => {
           {Math.trunc(params) !== 0 ? `${percentageChange > 0 ? '+' :''}${Math.trunc(percentageChange)} % respecto a ${monthNames[(currentMonth - 1 + 12) % 12]}` : <span>&nbsp;</span> }
         </p>
       </Card>
-      <Card className="bg-[#FFBD83] shadow-lg border-none p-4">
+      <Card className="bg-[#f3f3f3] shadow-lg border-none p-4">
         <div className="flex justify-between items-center">
           <h1>Objetivos</h1>
           <Check width={15} height={15} />
@@ -85,7 +85,7 @@ const InfoDash: React.FC<InfoDashProps> = ({ params,prevData,status }) => {
         </p>
         </div> : <div className="flex justify-center flex-col"><span className="text-lg font-sans pt-1 pb-1">Sin Datos</span><span>&nbsp;</span></div>}        
       </Card>
-      <Card className="bg-[#FFBD83] shadow-lg border-none p-8 px-4 flex justify-center items-center flex-col">
+      <Card className="bg-[#f3f3f3] shadow-lg border-none p-8 px-4 flex justify-center items-center flex-col">
         <div className="flex justify-between items-center">
           <h1>ELEGIR MES</h1>
         </div>

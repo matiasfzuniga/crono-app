@@ -32,7 +32,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
   };
 
   return (
-    <div className="flex flex-col w-[250px]">
+    <div className="flex flex-col w-[250px] text-gray-200">
         <span className="pb-2">{ tags?.length < maxTags
             ? "Agrega un tag"
             : `solo puedes agregar ${maxTags} tags`}</span>
@@ -41,7 +41,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
         minLength={3}
         maxLength={15}
         type="text"
-        className="w-56 border border-gray-300 rounded-md py-2 focus-visible:ring-offset-0 focus-visible:ring-0 bg-[#FFBD83] border-none"
+        className="w-56 border border-gray-300 rounded-md py-2 focus-visible:ring-offset-0 focus-visible:ring-0 bg-[#27201a] border-none"
         onKeyDown={handleKeyPress}
         onChange={handleInputChange}
         value={userInput}
@@ -52,7 +52,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
         {tags?.map((tag: string, index: number) => (
           <span
             key={`${index}-${tag}`}
-            className="inline-flex items-start justify-start px-3 py-2 rounded-lg text-sm shadow-sm font-medium bg-[#FFBD83] text-gray-800 mr-2"
+            className="inline-flex items-start justify-start px-3 py-2 rounded-lg text-sm shadow-sm font-medium bg-[#27201a] text-gray-400 mr-2"
           >
             {tag.trim()}
             <button

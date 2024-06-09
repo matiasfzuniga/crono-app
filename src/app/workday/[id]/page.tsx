@@ -26,30 +26,30 @@ export default async function WorkDayPage({
 
   return (
     <div className="flex justify-center items-center flex-col lg:p-10 pt-5 h-[73vh]">
-      <h1 className="text-[40px]">{data.title}</h1>
+      <h1 className="text-[40px] text-gray-200">{data.title}</h1>
       <div className="flex justify-between">
         <div className="flex items-center flex-col h-[350px] w-[350px] p-4">
           <div className="flex items-start gap-10">
             <div className="flex justify-center flex-col">
-              <h1 className="text-xl font-semibold underline underline-offset-2 decoration-orange-800">
+              <h1 className="text-xl font-semibold underline underline-offset-2 text-gray-300">
                 día
               </h1>
               <p>{data.day}</p>
             </div>
             <div className="flex items-start justify-center flex-col">
-              <h1 className="text-xl font-semibold underline underline-offset-2 decoration-orange-800">
+              <h1 className="text-xl font-semibold underline underline-offset-2 text-gray-300">
                 tiempo
               </h1>
               <p>{data.time}</p>
             </div>
           </div>
-          <h1 className="text-xl font-semibold pt-8 underline underline-offset-2 decoration-orange-800">
+          <h1 className="text-xl font-semibold pt-8 underline underline-offset-2 text-gray-300">
             descripción
           </h1>
           <p>{data.description}</p>
         </div>
         <div className="flex flex-col pt-4 justify-center items-center">
-          <h1 className="text-xl font-semibold pb-4 underline underline-offset-2 decoration-orange-800">
+          <h1 className="text-xl font-semibold pb-4 underline underline-offset-2 text-gray-300">
             tags
           </h1>
           <TagDetail params={data} id={params.id}/>

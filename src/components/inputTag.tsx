@@ -6,12 +6,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import useTagInput from "@/hooks/useTag";
 import { TagField } from "./tagField";
 import { useTagStore } from "@/store/tagStore";
+import { useStore } from "@/store/objetiveStore";
+import { useTimeStore } from "@/store/timeStore";
 
 const InputTag = () => {
   const controls = useAnimation();
   const [showDynamicComponent, setShowDynamicComponent] = React.useState(false);
   const { tags, handleAddTag, handleRemoveTag } = useTagInput(5,[]);
   const updateTag = useTagStore((state) => state.updateTag);
+  const obj = useStore((state) => state.obj);
+  const { hour } = useTimeStore();
 
   const handleButtonClick = async () => {
     setShowDynamicComponent(!showDynamicComponent);
@@ -31,8 +35,20 @@ const InputTag = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.button animate={controls} onClick={handleButtonClick}>
-          <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
-            {showDynamicComponent ? <ChevronRight /> : <ChevronLeft />}
+          <Card className="bg-[#130f0c] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
+            {showDynamicComponent ? <ChevronRight color={`${
+                parseInt(obj) == hour
+                  ? "#A5D6A7"
+                  : parseInt(obj) > hour
+                  ? "#FF7800"
+                  : "#81D4FA"
+              }`}/> : <ChevronLeft color={`${
+                parseInt(obj) == hour
+                  ? "#A5D6A7"
+                  : parseInt(obj) > hour
+                  ? "#FF7800"
+                  : "#81D4FA"
+              }`}/>}
           </Card>
         </motion.button>
       </motion.section>

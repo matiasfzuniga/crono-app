@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="max-w-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-gray-200"
         />
         <DropdownMenu>
           <DropdownMenuContent align="end">
@@ -133,6 +133,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className=" bg-[#e6e6e6] hover:bg-[#d1d1d1]"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>                 
@@ -142,7 +143,7 @@ export function DataTable<TData, TValue>({
                         )}                    
                     </TableCell>
                   ))}
-                  <td><Button variant="secondary" className="m-1 bg-orange-400 hover:bg-orange-500" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
+                  <td><Button variant="secondary" className="m-1 bg-[#f3f3f3]" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
                 </TableRow> 
               ))
             ) : (
