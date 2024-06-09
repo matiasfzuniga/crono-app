@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   const session = await getServerSession();
   try {
     const body = await request.json();
-    const { day, title, description, time, tags } = body;
+    const { day, title, description, time, tags, status } = body;
 
     const Workday = await prisma.workday.create({
       data: {
@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
         time,
         title,
         description,
+        status,
         userAuthor: {
           connect: {
             email: session?.user?.email!,

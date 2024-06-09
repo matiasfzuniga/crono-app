@@ -5,13 +5,13 @@ import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useTagInput from "@/hooks/useTag";
 import { TagField } from "./tagField";
-import { useStore } from "@/store/tagStore";
+import { useTagStore } from "@/store/tagStore";
 
 const InputTag = () => {
   const controls = useAnimation();
   const [showDynamicComponent, setShowDynamicComponent] = React.useState(false);
   const { tags, handleAddTag, handleRemoveTag } = useTagInput(5,[]);
-  const updateTag = useStore((state) => state.updateTag);
+  const updateTag = useTagStore((state) => state.updateTag);
 
   const handleButtonClick = async () => {
     setShowDynamicComponent(!showDynamicComponent);

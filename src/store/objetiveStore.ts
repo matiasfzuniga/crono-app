@@ -5,7 +5,7 @@ type State = {
     obj: string
   }
   type Actions = {
-    updateObj: (newObj: string) => void
+    updateObj: (newObj: string) => void;
   }
   export const useStore = create(
     persist<State & Actions>(

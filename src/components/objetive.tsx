@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { FlameKindling } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useStore } from "@/store/objetiveStore";
+import { useTimeStore } from "@/store/timeStore";
 
 const Objetive = () => {
   const controls = useAnimation();
@@ -15,6 +16,7 @@ const Objetive = () => {
     });
   };
   const obj = useStore((state) => state.obj)
+  const { hour } = useTimeStore()
 
   return (
     <div>
@@ -25,7 +27,7 @@ const Objetive = () => {
       >
         <motion.button animate={controls} onClick={handleButtonClick}>
           <Card className="bg-[#FFBD83] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
-            <span className="text-[#FF7800] border border-[#FF7800] p-1 rounded-full h-8 w-8 text-center text-md">
+            <span className={`${parseInt(obj) == hour && parseInt(obj) != 0 ? 'border-[#A5D6A7] text-[#A5D6A7]'  : parseInt(obj) > hour ? 'border-[#FF7800] text-[#FF7800]' : 'border-[#81D4FA] text-[#81D4FA]'} border p-1 rounded-full h-8 w-8 text-center text-md`}>
               {obj}
             </span>
             {showDynamicComponent ? (

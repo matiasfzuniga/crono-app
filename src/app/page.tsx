@@ -1,10 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,7 +22,9 @@ import { Quantico } from "next/font/google";
 import Objetive from "@/components/objetive";
 import InputTag from "@/components/inputTag";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useStore } from "@/store/tagStore";
+import { useTagStore } from "@/store/tagStore";
+import { useStore } from "@/store/objetiveStore";
+import { useTimeStore } from "@/store/timeStore";
 
 const quantico = Quantico({
   weight: "700",
@@ -41,17 +39,20 @@ const IndexPage: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState("");
   const [description, setDescription] = useState("");
   const { data: session } = useSession();
-  const tags = useStore(state => state.tag)
-  
+  const tags = useTagStore((state) => state.tag);
+  const { hour,setHour } = useTimeStore();
+  const obj = useStore((state) => state.obj)
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
       interval = setInterval(() => {
         setElapsedTime(Date.now() - (startTime || Date.now()));
       }, 1000);
-    }
+      }
+    setHour(Math.floor(elapsedTime / 3600000));
     return () => clearInterval(interval);
-  }, [isRunning, startTime]);
+  }, [isRunning, startTime, elapsedTime, setHour]);
 
   const formatTime = (timeInSeconds: number): string => {
     const milisec = timeInSeconds / 1000;
@@ -67,11 +68,18 @@ const IndexPage: React.FC = () => {
     )}`;
   };
 
+  const statusObjetive = (obj:number, time:number) => {
+    if(obj === time)return 'complete';
+    if(obj > time) return 'incomplete';
+    return 'exceeded';
+  };
+
   const handleStartStop = () => {
     if (isRunning) {
       setIsRunning(false);
     } else {
       setStartTime(Date.now() - elapsedTime);
+
       setIsRunning(true);
     }
   };
@@ -99,7 +107,8 @@ const IndexPage: React.FC = () => {
         title,
         description,
         time: formatTime(elapsedTime),
-        tags:tags,
+        tags: tags,
+        status: statusObjetive(parseInt(obj),hour)
       };
       const response = await fetch("api/workday", {
         method: "POST",
@@ -175,8 +184,15 @@ const IndexPage: React.FC = () => {
               <AlertDialogTitle>
                 Guardar sesión del día {new Date().toLocaleDateString("en-GB")}
               </AlertDialogTitle>
-              <AlertDialogDescription className="text-gray-800">Agregar titulo</AlertDialogDescription>
-              <Input value={title} minLength={2} maxLength={20} onChange={handleTagChange} />
+              <AlertDialogDescription className="text-gray-800">
+                Agregar titulo
+              </AlertDialogDescription>
+              <Input
+                value={title}
+                minLength={2}
+                maxLength={20}
+                onChange={handleTagChange}
+              />
               <AlertDialogDescription className="text-gray-800">
                 Agregar una descripción
               </AlertDialogDescription>
@@ -185,15 +201,19 @@ const IndexPage: React.FC = () => {
                 onChange={handleDescriptionChange}
                 maxLength={300}
               ></Textarea>
-              { tags?.length !== 0 ? <div className="flex items-center space-x-2">
-              <Checkbox id="terms" checked={true}/>
-              <label
-                htmlFor="terms"
-                className="text-sm text-gray-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Agregar tags
-              </label>
-              </div> : ''}          
+              {tags?.length !== 0 ? (
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" checked={true} />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm text-gray-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Agregar tags
+                  </label>
+                </div>
+              ) : (
+                ""
+              )}
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>

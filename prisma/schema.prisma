@@ -7,6 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum WorkdayStatus {
+  complete
+  incomplete
+  exceeded
+}
+
 model Workday {
   id           Int             @id @default(autoincrement())
   day          String
@@ -17,6 +23,7 @@ model Workday {
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
   tags         Tag[]
+  status       WorkdayStatus
   userAuthor   User?           @relation("Workdays", fields: [userAuthorId], references: [id])
 }
 

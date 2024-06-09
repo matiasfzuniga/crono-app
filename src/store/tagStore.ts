@@ -7,7 +7,7 @@ type State = {
     updateTag: (newTag: string[]) => void
   }
 
-  export const useStore = create<State & Actions>(
+  export const useTagStore = create<State & Actions>(
     
         (set) => ({
             tag: [],

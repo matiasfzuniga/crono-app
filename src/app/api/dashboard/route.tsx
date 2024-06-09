@@ -84,6 +84,21 @@ export async function GET(req: NextRequest, res: NextResponse) {
       },
     });
 
+    const statusWorkday = await prisma.workday.findMany({
+      where: {
+        userAuthor: {
+          email: userEmail,
+        },
+        createdAt: {
+          gte: startOfCurrentMonth,
+          lte: endOfCurrentMonth,
+        },
+      },
+      select: {
+        status: true,
+      },
+    });
+
     const totalTimeInSecondsThisMonth = workdaysThisMonth.reduce(
       (total, workday) => {
         return total + timeToSeconds(workday.time);
@@ -95,7 +110,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       totalTimeInSecondsThisMonth
     );
 
-    return NextResponse.json({ tagCountMap, totalTimeInHoursThisMonth });
+    return NextResponse.json({ tagCountMap, totalTimeInHoursThisMonth,statusWorkday });
   } catch (error) {
     console.error("Error al procesar la solicitud GET:", error);
     return NextResponse.error();

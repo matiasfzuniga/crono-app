@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Activity, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { useStore } from "@/store/dashboardStore";
-import { calculatePercentageChange } from "@/lib/utils";
+import { calculatePercentageChange, calculatePercentage } from "@/lib/utils";
 
 const monthNames = [
   "Enero",
@@ -21,20 +21,27 @@ const monthNames = [
   "Diciembre",
 ];
 
+interface StatusProp {
+  status: string;
+}
+
 interface InfoDashProps {
   params: number;
   prevData: number;
+  status: Array<StatusProp>;
 }
 
-const InfoDash: React.FC<InfoDashProps> = ({ params,prevData }) => {
+const InfoDash: React.FC<InfoDashProps> = ({ params,prevData,status }) => {
   const { currentMonth, currentYear, changeMonth, setCurrentMonth, setCurrentYear } = useStore();
   const [percentageChange, setPercentageChange] = React.useState(0);
+  const [percentageChangeObj, setPercentageChangeObj] = React.useState(0);
 
   useEffect(() => {
     const change = calculatePercentageChange(Math.trunc(params), Math.trunc(prevData));
+    const changeObj = calculatePercentage(status.filter(workday => workday.status === 'complete').length,status.length)
     setPercentageChange(change)
-  }, [params, prevData]);
-
+    setPercentageChangeObj(changeObj)
+  }, [params, prevData,status]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -71,10 +78,10 @@ const InfoDash: React.FC<InfoDashProps> = ({ params,prevData }) => {
         </div>
         {Math.trunc(params) !== 0 ? <div className="flex justify-between items-center h-14">   
         <p className="text-sm font-sans pt-10">
-          40/32
+          {`${status.filter(workday => workday.status === 'complete').length}/${status.length}`}
         </p>
         <p className="text-2xl font-semibold pt-10">
-          80<span className="font-sans">%</span>
+          {Math.trunc(percentageChangeObj)}<span className="font-sans">%</span>
         </p>
         </div> : <div className="flex justify-center flex-col"><span className="text-lg font-sans pt-1 pb-1">Sin Datos</span><span>&nbsp;</span></div>}        
       </Card>

@@ -34,7 +34,7 @@ const page = async ({ searchParams }: { searchParams: { y?: string, m?: string }
     <div className="flex justify-center items-center flex-col lg:p-10 pt-16 h-[73vh]">
        <h1 className="text-3xl pb-12">Estadísticas</h1>
       <div className="flex justify-center gap-4 pb-5">
-        <InfoDash params={data.totalTimeInHoursThisMonth} prevData={prevData}/>
+        <InfoDash params={data.totalTimeInHoursThisMonth} prevData={prevData} status={data.statusWorkday}/>
         <Pie params={data.tagCountMap}/>
       </div>
     </div>
