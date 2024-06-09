@@ -138,7 +138,7 @@ const IndexPage: React.FC = () => {
         <Card
           className={`${
             parseInt(obj) == hour
-              ? "bg-[#2E8B57]"
+              ? "bg-[#2e8b2e]"
               : parseInt(obj) > hour
               ? "bg-[#ffae44]"
               : "bg-[#008B8B]"

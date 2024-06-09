@@ -22,7 +22,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning className="bg-black">     
       <body className={`${inter.className} bg-black`}> 
       <Header session={session}/>
-      <div className="bg-[#070013] rounded-lg mx-2">
+      <div className="bg-[#04040e] rounded-lg mx-2">
         <NextAuthProvider>
    
             {children}

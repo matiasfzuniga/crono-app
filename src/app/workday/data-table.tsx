@@ -133,7 +133,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className=" bg-[#e6e6e6] hover:bg-[#d1d1d1]"
+                  className=" bg-[#e6e6e6d5] hover:bg-[#d1d1d1]"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>                 
@@ -143,7 +143,7 @@ export function DataTable<TData, TValue>({
                         )}                    
                     </TableCell>
                   ))}
-                  <td><Button variant="secondary" className="m-1 bg-[#f3f3f3]" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
+                  <td><Button variant="secondary" className="m-1 bg-[#c9c9c9]" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
                 </TableRow> 
               ))
             ) : (

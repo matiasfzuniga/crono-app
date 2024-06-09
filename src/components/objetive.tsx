@@ -30,7 +30,7 @@ const Objetive = () => {
             <span
               className={`${
                 parseInt(obj) == hour
-                  ? "border-[#A5D6A7] text-[#A5D6A7]"
+                  ? "border-[#2e8b2e] text-[#2e8b2e]"
                   : parseInt(obj) > hour
                   ? "border-[#FF7800] text-[#FF7800]"
                   : "border-[#81D4FA] text-[#81D4FA]"
@@ -45,17 +45,17 @@ const Objetive = () => {
             ) : (
               <span className={`[writing-mode:vertical-lr] font-semibold ${
                 parseInt(obj) == hour
-                  ? "text-[#a5d6a7b0]"
+                  ? "text-[#2e8b2eb0]"
                   : parseInt(obj) > hour
                   ? "text-[#ff77009a]"
-                  : "text-[#81d4fa80]"
+                  : "text-[#81d4fa83]"
               } `}>
                 objetivo
               </span>
             )}
             {
               parseInt(obj) == hour
-              ? <Check width={20} height={20} color="#A5D6A7"/>
+              ? <Check width={20} height={20} color="#2e8b2e"/>
               : parseInt(obj) > hour
               ? <FlameKindling width={20} height={20} color="#FF7800"/>
               : <ShieldCheck width={20} height={20} color="#81D4FA" />
