@@ -26,7 +26,7 @@ const Objetive = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.button animate={controls} onClick={handleButtonClick}>
-          <Card className="bg-[#130f0c] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
+          <Card className="bg-[#130f0c] shadow-lg border border-gray-900 p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
             <span
               className={`${
                 parseInt(obj) == hour
@@ -43,14 +43,18 @@ const Objetive = () => {
                 objetivo
               </span>
             ) : (
-              <span className={`[writing-mode:vertical-lr] font-semibold ${
+              <span className={`text-xs font-semibold ${
                 parseInt(obj) == hour
                   ? "text-[#2e8b2eb0]"
                   : parseInt(obj) > hour
                   ? "text-[#ff77009a]"
                   : "text-[#81d4fa83]"
               } `}>
-                objetivo
+                G <br/>
+                O <br/>
+                A <br/>
+                L <br/>
+                S <br/>
               </span>
             )}
             {

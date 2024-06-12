@@ -61,37 +61,37 @@ const InfoDash: React.FC<InfoDashProps> = ({ params,prevData,status }) => {
       transition={{ duration: 0.8 }}
       className="flex flex-col gap-4"
     >
-      <Card className="bg-[#f3f3f3] shadow-lg border-none p-4">
+      <Card className="bg-[#e0e0e00c] border-gray-900 border text-gray-300 shadow-lg p-4">
         <div className="flex justify-between items-center">
           <h1>Horas en {monthNames[currentMonth]}</h1>
           <Activity width={15} height={15} />
         </div>
-        <p className={`${Math.trunc(params) !== 0 ? 'text-2xl font-semibold' : 'text-lg font-sans' }  pt-1`}>{Math.trunc(params) !== 0 ? Math.trunc(params) : 'Sin Datos'}</p>
-        <p className="text-sm font-sans">
+        <p className={`${Math.trunc(params) !== 0 ? 'text-2xl font-semibold text-gray-400' : 'text-lg font-sans' }  pt-1`}>{Math.trunc(params) !== 0 ? Math.trunc(params) : 'Sin Datos'}</p>
+        <p className="text-sm font-sans text-gray-400">
           {Math.trunc(params) !== 0 ? `${percentageChange > 0 ? '+' :''}${Math.trunc(percentageChange)} % respecto a ${monthNames[(currentMonth - 1 + 12) % 12]}` : <span>&nbsp;</span> }
         </p>
       </Card>
-      <Card className="bg-[#f3f3f3] shadow-lg border-none p-4">
+      <Card className="bg-[#e0e0e00c] border-gray-900 border text-gray-300 shadow-lg p-4">
         <div className="flex justify-between items-center">
           <h1>Objetivos</h1>
-          <Check width={15} height={15} />
+          <Check width={15} height={15}/>
         </div>
         {Math.trunc(params) !== 0 ? <div className="flex justify-between items-center h-14">   
-        <p className="text-sm font-sans pt-10">
+        <p className="text-sm font-sans pt-10 text-gray-400">
           {`${status.filter(workday => workday.status === 'complete').length}/${status.length}`}
         </p>
-        <p className="text-2xl font-semibold pt-10">
+        <p className="text-2xl font-semibold pt-10 text-gray-400">
           {Math.trunc(percentageChangeObj)}<span className="font-sans">%</span>
         </p>
         </div> : <div className="flex justify-center flex-col"><span className="text-lg font-sans pt-1 pb-1">Sin Datos</span><span>&nbsp;</span></div>}        
       </Card>
-      <Card className="bg-[#f3f3f3] shadow-lg border-none p-8 px-4 flex justify-center items-center flex-col">
+      <Card className="bg-[#e0e0e00c] border-gray-900 border text-gray-300 shadow-lg p-8 px-4 flex justify-center items-center flex-col">
         <div className="flex justify-between items-center">
           <h1>ELEGIR MES</h1>
         </div>
         <div className="text-2xl font-semibold pt-1 flex">
           <ChevronLeft onClick={() => changeMonth(-1)} />
-          <span className="mx-2 py-1 text-sm">
+          <span className="mx-2 py-1 text-sm text-gray-400">
             {monthNames[currentMonth]} {currentYear}
           </span>
           <ChevronRight onClick={() => changeMonth(1)} />

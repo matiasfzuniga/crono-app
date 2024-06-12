@@ -5,7 +5,7 @@ import { LogOut } from "lucide-react";
 
 const LogOutComponent = () => {
   return (
-    <div onClick={() => signOut()} className="pl-2"><LogOut size={17}/></div>
+    <div onClick={() => signOut()} className="flex items-center cursor-pointer">Logout<LogOut size={17} className='ml-1'/></div>
   )
 }
 

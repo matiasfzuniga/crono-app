@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { useStore } from "@/store/objetiveStore";
 import { useTimeStore } from "@/store/timeStore";
+import SlideTitle from "@/components/slideTitle";
 
 const Footer = () => {
   const { hour } = useTimeStore();
@@ -78,6 +79,7 @@ const Footer = () => {
             }`} />
         </Button>
       </Link>
+      <SlideTitle/>
     </div>
   );
 };

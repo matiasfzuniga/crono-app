@@ -35,7 +35,7 @@ const InputTag = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.button animate={controls} onClick={handleButtonClick}>
-          <Card className="bg-[#130f0c] shadow-lg border-none p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
+          <Card className="bg-[#130f0c] border border-gray-900 shadow-lg p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
             {showDynamicComponent ? <ChevronRight color={`${
                 parseInt(obj) == hour
                   ? "#2e8b2e"

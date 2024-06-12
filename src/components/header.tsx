@@ -9,17 +9,15 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { UserRound,Pencil } from "lucide-react";
-import LogOutComponent from "./logOut";
+import LogOutComponent from "@/components/logOut";
 
 const Header = async ({ session }: any) => {
-  let fecha = Date.now();
-  const hoy = new Date(fecha);
-  let resultado = hoy.toLocaleDateString("en-GB");
   return (
     <>
       {session?.user ? (
         <div className="p-2">
-          <div className="absolute lg:left-10 top-8 left-7 text-white">{resultado}</div>
+       
+          {/* <div className="absolute lg:left-10 top-8 left-7 text-white">{resultado}</div> */}
           <div className="absolute lg:right-5 top-8 right-7">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -34,7 +32,7 @@ const Header = async ({ session }: any) => {
               <DropdownMenuItem className="px-4 py-2 focus:bg-[#e0e0e0]">
                 <Link href={"/profile"} className="flex items-center">Config<Pencil className="pl-2"/></Link>
               </DropdownMenuItem>
-              <DropdownMenuItem className="px-4 py-2 focus:bg-[#e0e0e0]" >Logout<LogOutComponent/></DropdownMenuItem>
+              <DropdownMenuItem className="px-4 py-2 focus:bg-[#e0e0e0]" ><LogOutComponent/></DropdownMenuItem>
             </DropdownMenuHeadContent>
           </DropdownMenu>
           </div>

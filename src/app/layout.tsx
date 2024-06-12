@@ -20,7 +20,7 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en" suppressHydrationWarning className="bg-black">     
-      <body className={`${inter.className} bg-black`}> 
+      <body className={`${inter.className} bg-black overflow-hidden`}> 
       <Header session={session}/>
       <div className="bg-[#04040e] rounded-lg mx-2">
         <NextAuthProvider>

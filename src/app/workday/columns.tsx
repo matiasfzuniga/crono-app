@@ -35,6 +35,7 @@ export const columns: ColumnDef<Workday>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="hover:bg-[#171722] hover:text-gray-300"
         >
           Tiempo
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -49,6 +50,7 @@ export const columns: ColumnDef<Workday>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+           className="hover:bg-[#171722] hover:text-gray-300"
         >
           Día
           <ArrowUpDown className="ml-2 h-4 w-4" />

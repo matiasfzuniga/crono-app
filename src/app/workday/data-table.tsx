@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-gray-200"
+          className="max-w-sm bg-[#e0e0e00c] focus-visible:ring-0 focus-visible:ring-offset-0 border-none text-gray-200 placeholder:text-gray-600"
         />
         <DropdownMenu>
           <DropdownMenuContent align="end">
@@ -106,11 +106,11 @@ export function DataTable<TData, TValue>({
         </DropdownMenu>
       </div>
 
-      <div className="rounded-md border">
-        <Table>
+      <div className="border-none">
+        <Table className="bg-[#e0e0e00c] border-none ">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="hover:bg-transparent">
+              <TableRow key={headerGroup.id} className="hover:bg-transparent border-[#555555]">
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -133,7 +133,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className=" bg-[#e6e6e6d5] hover:bg-[#d1d1d1]"
+                  className=" bg-[#e0e0e00c] border-[#242424] hover:bg-[#1a1b2c] text-gray-300"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>                 
@@ -143,7 +143,7 @@ export function DataTable<TData, TValue>({
                         )}                    
                     </TableCell>
                   ))}
-                  <td><Button variant="secondary" className="m-1 bg-[#c9c9c9]" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
+                  <td><Button variant="secondary" className="m-1 bg-[#31313f] hover:bg-[#171722] hover:text-gray-400" onClick={()=> router.push(`workday/${parseInt(row.id) + 1}`)}>Revisar</Button></td>              
                 </TableRow> 
               ))
             ) : (
@@ -165,16 +165,18 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className="bg-[#e0e0e00c] hover:bg-[#c0bebe1e] border-gray-900"
         >
-          <ChevronLeft />
+          <ChevronLeft color="#e2e8f0"/>
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className="bg-[#e0e0e00c] hover:bg-[#c0bebe1e] border-gray-900"
         >
-          <ChevronRight />
+          <ChevronRight color="#e2e8f0"/>
         </Button>
       </div>
     </motion.div>

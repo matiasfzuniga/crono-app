@@ -25,6 +25,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useTagStore } from "@/store/tagStore";
 import { useStore } from "@/store/objetiveStore";
 import { useTimeStore } from "@/store/timeStore";
+import SlideTitle from "@/components/slideTitle";
+import ToDoList from "@/components/toDoList";
 
 const quantico = Quantico({
   weight: "700",
@@ -172,7 +174,7 @@ const IndexPage: React.FC = () => {
                     ? "border-[#A5D6A7] text-[#A5D6A7] hover:bg-[#A5D6A7]"
                     : parseInt(obj) > hour
                     ? "border-[#FF7800] text-[#FF7800] hover:bg-[#ff5e00]"
-                    : "border-[#81D4FA] text-[#81D4FA] hover:bg-[#81d4fa2a]"
+                    : "border-[#81D4FA] text-[#81D4FA] hover:bg-[#81d4fa70]"
                 }`}
                 size={"icon"}
                 variant="outline"
@@ -240,6 +242,8 @@ const IndexPage: React.FC = () => {
           <LoginDrawer openDrawer={openDrawer} />
         )}
       </AlertDialog>
+
+      <ToDoList/>
     </div>
   );
 };
