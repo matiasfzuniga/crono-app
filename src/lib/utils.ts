@@ -27,3 +27,4 @@ export function secondsToHours(seconds: number): number {
 export function calculatePercentage (partial:number,total:number): number {
   return partial * 100 / total
 }
+
