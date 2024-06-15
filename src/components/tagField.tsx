@@ -41,7 +41,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
         minLength={3}
         maxLength={15}
         type="text"
-        className="w-56 border border-gray-300 rounded-md py-2 focus-visible:ring-offset-0 focus-visible:ring-0 bg-[#27201a] border-none"
+        className="w-56 border-none rounded-md py-2 focus-visible:ring-offset-0 focus-visible:ring-0 bg-gray-900"
         onKeyDown={handleKeyPress}
         onChange={handleInputChange}
         value={userInput}

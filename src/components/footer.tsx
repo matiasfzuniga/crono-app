@@ -22,7 +22,7 @@ const Footer = () => {
               : parseInt(obj) > hour
               ? "border-[#FF7800] text-[#FF7800] hover:bg-[#ff5e0048]"
               : "border-[#81D4FA] text-[#81D4FA] hover:bg-[#81d4fa2a]"
-          } border bg-[#130f0c] `}
+          } border bg-[#0a0d16]`}
         >
           <AlarmClock
             width={35}
@@ -47,7 +47,7 @@ const Footer = () => {
               : parseInt(obj) > hour
               ? "border-[#FF7800] text-[#FF7800] hover:bg-[#ff5e0048]"
               : "border-[#81D4FA] text-[#81D4FA] hover:bg-[#81d4fa2a]"
-          } border bg-[#130f0c] `}
+          } border bg-[#0a0d16]`}
         >
           <CalendarCheck width={35} height={35} color={`${
               parseInt(obj) == hour
@@ -68,7 +68,7 @@ const Footer = () => {
               : parseInt(obj) > hour
               ? "border-[#FF7800] text-[#FF7800] hover:bg-[#ff5e0048]"
               : "border-[#81D4FA] text-[#81D4FA] hover:bg-[#81d4fa2a]"
-          } border bg-[#130f0c] `}
+          } border bg-[#0a0d16]`}
         >
           <BarChart4 width={35} height={35} color={`${
               parseInt(obj) == hour

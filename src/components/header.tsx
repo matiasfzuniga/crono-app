@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { UserRound,Pencil } from "lucide-react";
+import { UserRound, Pencil } from "lucide-react";
 import LogOutComponent from "@/components/logOut";
 
 const Header = async ({ session }: any) => {
@@ -16,25 +16,16 @@ const Header = async ({ session }: any) => {
     <>
       {session?.user ? (
         <div className="p-2">
-       
-          {/* <div className="absolute lg:left-10 top-8 left-7 text-white">{resultado}</div> */}
           <div className="absolute lg:right-5 top-8 right-7">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="bg-[#808080] hover:bg-[#e0e0e0] rounded-full" size="icon">
-              <UserRound />
+            <Link href={"/profile"} className="flex items-center">
+              <Button
+                variant="ghost"
+                className="bg-[#808080] hover:bg-[#e0e0e0] rounded-full"
+                size="icon"
+              >
+                <UserRound />
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuHeadContent className="w-36 px-3 py-2 mr-2 bg-transparent text-white">
-              <DropdownMenuItem className="px-4 py-2 focus:bg-[#e0e0e0]">
-                <Link href={"/"}>Inicio</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="px-4 py-2 focus:bg-[#e0e0e0]">
-                <Link href={"/profile"} className="flex items-center">Config<Pencil className="pl-2"/></Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="px-4 py-2 focus:bg-[#e0e0e0]" ><LogOutComponent/></DropdownMenuItem>
-            </DropdownMenuHeadContent>
-          </DropdownMenu>
+            </Link>
           </div>
         </div>
       ) : (

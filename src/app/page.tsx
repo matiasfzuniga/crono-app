@@ -165,19 +165,20 @@ const IndexPage: React.FC = () => {
     <div className="flex justify-center items-center lg:p-10 pt-16 h-[73vh]">
       <AlertDialog>
         <InputTag />
+        <div className="border-4 border-gray-900 rounded-xl">
         <Card
           className={`${
             parseInt(obj) == hour
-              ? "bg-[#2e8b2e]"
+              ? "bg-gray-900 border border-[#2e8b2e]"
               : parseInt(obj) > hour
-              ? "bg-[#ffae44]"
-              : "bg-[#008B8B]"
-          } border-none shadow-lg`}
+              ? "bg-gray-900 border border-[#ffae44]"
+              : "bg-gray-900 border border-[#008B8B]"
+          }  shadow-lg`}
         >
-          <CardContent className="flex flex-col justify-center items-center pt-10">
+          <CardContent className="flex flex-col justify-center items-center pt-10 text-slate-400">
             <p className="font-semibold">Tiempo transcurrido:</p>
             <h1
-              className={`text-[45px] font-bold w-full text-center ${quantico.className}`}
+              className={`text-[45px] font-bold w-full text-center ${quantico.className}  text-gray-300`}
             >
               {formatTime(elapsedTime)}
             </h1>
@@ -187,12 +188,24 @@ const IndexPage: React.FC = () => {
               <Button
                 size={"icon"}
                 onClick={handleStartStop}
-                className="m-2 rounded-full"
+                className="m-2 rounded-full bg-gray-800 hover:bg-slate-800"
               >
                 {isRunning ? (
-                  <Pause width={18} height={18} />
+                  <Pause width={18} height={18} color={`${
+                    parseInt(obj) == hour
+                      ? "#A5D6A7"
+                      : parseInt(obj) > hour
+                      ? "#FF7800"
+                      : "#81D4FA"
+                  }`}/>
                 ) : (
-                  <Play width={18} height={18} />
+                  <Play width={18} height={18} color={`${
+                    parseInt(obj) == hour
+                      ? "#A5D6A7"
+                      : parseInt(obj) > hour
+                      ? "#FF7800"
+                      : "#81D4FA"
+                  }`}/>
                 )}
               </Button>
               <Button
@@ -213,14 +226,21 @@ const IndexPage: React.FC = () => {
             <AlertDialogTrigger asChild>
               <Button
                 onClick={handleSave}
-                className="w-[100px] rounded-full"
+                className={`w-[100px] rounded-full bg-gray-800 hover:bg-slate-800`}
                 size={"icon"}
               >
-                <Check width={15} height={15} />
+                <Check width={15} height={15} color={`${
+                  parseInt(obj) == hour
+                    ? "#A5D6A7"
+                    : parseInt(obj) > hour
+                    ? "#FF7800"
+                    : "#81D4FA"
+                }`}/>
               </Button>
             </AlertDialogTrigger>
           </CardFooter>
         </Card>
+        </div>
         <Objetive />
         {session?.user?.name ? (
           <AlertDialogContent>

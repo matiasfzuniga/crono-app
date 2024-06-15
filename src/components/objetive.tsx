@@ -26,7 +26,7 @@ const Objetive = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.button animate={controls} onClick={handleButtonClick}>
-          <Card className="bg-[#130f0c] shadow-lg border border-gray-900 p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
+          <Card className="bg-gray-900 shadow-lg border border-gray-800 p-1 m-4 h-60 w-12 flex justify-around items-center flex-col gap-10">
             <span
               className={`${
                 parseInt(obj) == hour

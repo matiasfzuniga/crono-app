@@ -4,15 +4,10 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { useStore } from "@/store/objetiveStore";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import LogOutComponent from "@/components/logOut";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import ColorPicker from "@/components/colorPicker";
 
 const Profile = () => {
   const { data: session } = useSession();
@@ -54,7 +49,7 @@ const Profile = () => {
       <div className="flex">
         <div className="flex-col justify-center">
           <h1 className="text-gray-300 pt-3 pl-7 font-semibold text-sm">
-          S E T &nbsp; G O A L S
+            S E T &nbsp; G O A L S
           </h1>
           <div className="flex bg-[#e0e0e00c] border border-gray-900 p-4 m-2 rounded-lg">
             <div className=" h-[80px] w-[160px] flex justify-center items-center">
@@ -72,9 +67,9 @@ const Profile = () => {
         </div>
         <div className="flex flex-col">
           <h1 className="text-gray-300 pt-3 pl-7 font-semibold text-sm">
-         S E T &nbsp; C O L O R &nbsp; I N &nbsp; T A G S
+            S E T &nbsp; C O L O R &nbsp; I N &nbsp; T A G S
           </h1>
-          <div className="flex justify-center items-center bg-[#e0e0e00c] border border-gray-900 rounded-lg w-[390px] h-full p-2 m-2 text-gray-200">
+          <div className="flex justify-center items-center bg-[#e0e0e00c] border border-gray-900 rounded-lg w-[390px] h-full pr-10 m-2 text-gray-200">
             <div className="flex justify-center items-center flex-col px-2">
               <p className="pb-2 text-gray-400 font-mono text-xs">TAG</p>
               <div className="flex justify-center items-center">
@@ -85,11 +80,7 @@ const Profile = () => {
             </div>
             <div className="flex justify-center items-center flex-col px-2">
               <p className="pb-2 text-gray-400 font-mono text-xs">COLOR CODE</p>
-              <div className="flex">
-                <p className="bg-gray-700 px-3 py-1 m-1 rounded-lg">#9eb135</p>
-                {/* <input type="color" className="m-1 rounded-lg" /> */}
-                <span className="bg-[#9eb135] px-4 m-1 rounded-lg"></span>
-              </div>
+              <ColorPicker />
             </div>
           </div>
         </div>
