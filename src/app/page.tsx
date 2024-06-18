@@ -132,35 +132,6 @@ const IndexPage: React.FC = () => {
     return isRunning ? setIsRunning(false) : "";
   };
 
-// EASTER EGG
-
-  // var pattern = useMemo(()=>['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],[]);
-  // var current = useRef(0);
-
-  // const keyHandler = useCallback((event:any) => {
-  //   const { key } = event;
-  //   event.preventDefault();
-  //     if (key !== pattern[current.current]) {
-  //       current.current = 0;
-  //       return;
-  //     }
-  //     current.current++;
-  //     if (current.current === pattern.length) {
-  //       current.current = 0;
-  //       console.log('You found it!');
-  //     }
-  // }, [pattern]);
-
-  // useEffect(() => {
-  //   document.addEventListener('keydown', keyHandler);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', keyHandler);
-  //   };
-  // }, [keyHandler]);
-
-
-  // EASTER EGG
   return (
     <div className="flex justify-center items-center lg:p-10 pt-16 h-[73vh]">
       <AlertDialog>
@@ -178,7 +149,7 @@ const IndexPage: React.FC = () => {
           <CardContent className="flex flex-col justify-center items-center pt-10 text-slate-400">
             <p className="font-semibold">Tiempo transcurrido:</p>
             <h1
-              className={`text-[45px] font-bold w-full text-center ${quantico.className}  text-gray-300`}
+              className={`text-[45px] w-full text-center ${quantico.className} text-gray-300`}
             >
               {formatTime(elapsedTime)}
             </h1>
