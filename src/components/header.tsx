@@ -1,15 +1,8 @@
 import React from "react";
 import LoginDrawer from "@/components/loginDrawer";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuHeadContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { UserRound, Pencil } from "lucide-react";
-import LogOutComponent from "@/components/logOut";
+import { UserRound } from "lucide-react";
 
 const Header = async ({ session }: any) => {
   return (
