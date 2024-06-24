@@ -146,10 +146,16 @@ const IndexPage: React.FC = () => {
               : "bg-gray-900 border border-[#008B8B]"
           }  shadow-lg`}
         >
-          <CardContent className="flex flex-col justify-center items-center pt-10 text-slate-400">
+          <CardContent className="flex flex-col justify-center items-center pt-10 text-gray-300">
             <p className="font-semibold">Tiempo transcurrido:</p>
             <h1
-              className={`text-[45px] w-full text-center ${quantico.className} text-gray-300`}
+              className={`text-[45px] w-full text-center ${quantico.className} ${
+            parseInt(obj) == hour
+              ? "text-[#2e8b2e]"
+              : parseInt(obj) > hour
+              ? "text-[#ffae44]"
+              : "text-[#008B8B]"
+          }`}
             >
               {formatTime(elapsedTime)}
             </h1>
