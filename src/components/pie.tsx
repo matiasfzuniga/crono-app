@@ -14,10 +14,10 @@ const Doughnut = dynamic(
 );
 
 
-const Pie = ({ params }: { params: string[] }) => {
-  
+const Pie = ({ params, color }: { params: string[], color:string[] }) => {
   const keys = Object.keys(params).map((key) => key.trim());
   const values = Object.values(params);
+  const colorHex = Object.keys(color);
   const data = {
     labels: keys,
     datasets: [
@@ -26,12 +26,7 @@ const Pie = ({ params }: { params: string[] }) => {
         data: values,
         borderWidth: 1,
         borderColor: "#070013",
-        backgroundColor: [
-          "rgb(255, 60, 102)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 96)",
-          "rgb(55, 55, 16)",
-        ],
+        backgroundColor: colorHex,
         hoverOffset: 4,
       },
     ],

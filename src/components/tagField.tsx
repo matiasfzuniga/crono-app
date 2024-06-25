@@ -52,7 +52,7 @@ export const TagField = ({ tags, addTag, removeTag, maxTags }: iTag) => {
         {tags?.map((tag: string, index: number) => (
           <span
             key={`${index}-${tag}`}
-            className="inline-flex items-start justify-start px-3 py-2 rounded-lg text-sm shadow-sm font-medium bg-[#27201a] text-gray-400 mr-2"
+            className="inline-flex items-start justify-start px-3 py-2 rounded-lg text-sm shadow-sm font-medium bg-gray-900 text-gray-400 mr-2"
           >
             {tag.trim()}
             <button

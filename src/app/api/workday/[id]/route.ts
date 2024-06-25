@@ -7,7 +7,12 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         const data = await prisma.workday.findUnique({
             where: {id:id},
             include: {
-              tags: true
+              tags: true,
+              todos: {
+                select: {
+                  items: true, 
+                },
+              },
            }
         })
         return NextResponse.json(data)   

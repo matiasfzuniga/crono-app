@@ -28,3 +28,8 @@ export function calculatePercentage (partial:number,total:number): number {
   return partial * 100 / total
 }
 
+export function randomColor(): string {
+  const getRandomHexValue = () => Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+  const color = `#${getRandomHexValue()}${getRandomHexValue()}${getRandomHexValue()}`;
+  return color
+}

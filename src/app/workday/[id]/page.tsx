@@ -23,6 +23,9 @@ export default async function WorkDayPage({
   params: { id: string };
 }) {
   const data = await getData(params);
+  const toDo = data.todos[0].items;
+
+  const tags = data.tags.map((tag: { id: number; name: string }) => tag.name);
 
   return (
     <div className="flex justify-center items-center flex-col lg:p-10 pt-5 h-[73vh]">
@@ -46,13 +49,24 @@ export default async function WorkDayPage({
           <h1 className="text-xl font-semibold pt-8 underline underline-offset-2 text-gray-200">
             descripción
           </h1>
-          <p >{data.description}</p>
+          <p>{data.description}</p>
         </div>
         <div className="flex flex-col pt-4 justify-center items-center">
           <h1 className="text-xl font-semibold pb-4 underline underline-offset-2 text-gray-200">
             tags
           </h1>
-          <TagDetail params={data} id={params.id}/>
+          <TagDetail params={tags} id={params.id} />
+        </div>
+        <div className="flex flex-col pt-4 justify-center items-center">
+
+          {toDo.map((item: string, index: number) => (
+            <h1
+              key={index}
+              className="text-xl font-semibold pb-4 text-gray-200"
+            >
+              {item}
+            </h1>
+          ))}
         </div>
       </div>
     </div>

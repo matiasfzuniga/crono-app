@@ -35,7 +35,7 @@ const page = async ({ searchParams }: { searchParams: { y?: string, m?: string }
        <h1 className="text-3xl pb-12 text-gray-200">Estadísticas</h1>
       <div className="flex justify-center gap-4 pb-5">
         <InfoDash params={data.totalTimeInHoursThisMonth} prevData={prevData} status={data.statusWorkday}/>
-        <Pie params={data.tagCountMap}/>
+        <Pie params={data.tagCountMap} color={data.tagColor}/>
       </div>
     </div>
   );

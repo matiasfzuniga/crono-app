@@ -23,6 +23,7 @@ model Workday {
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
   tags         Tag[]
+  todos        ToDo[]
   status       WorkdayStatus
   userAuthor   User?           @relation("Workdays", fields: [userAuthorId], references: [id])
 }
@@ -30,7 +31,15 @@ model Workday {
 model Tag {
   id       Int             @id @default(autoincrement())
   name     String?         @unique
+  color    String
   workdays Workday[]
+}
+
+model ToDo {
+  id        Int             @id @default(autoincrement())    
+  items     String[]
+  workday   Workday? @relation(fields: [workdayId], references: [id])
+  workdayId Int?     @unique
 }
 
 model Account {

@@ -15,7 +15,7 @@ import {
     PaginationPrevious,
   } from "@/components/ui/pagination"
 import useTodoStore from '@/store/todoStore';
-import ToDoItem from './toDoItem';
+import ToDoItem from '@/components/toDoItem';
 import { AnimatePresence } from 'framer-motion';
 import AddToDoForm from './addToDoForm';
 
@@ -38,8 +38,8 @@ const ToDoList = () => {
   <AccordionItem value="item-1">
     <AccordionTrigger className="w-[50px] justify-around flex-col rounded-full bg-[#808080] hover:bg-[#e0e0e0] absolute top-2 left-1 hover:no-underline font-semibold text-gray-900">
     </AccordionTrigger>
-    <AccordionContent className="w-[180px] flex justify-center items-end">
-     <div className=" bg-[#e0e0e00c] h-[400px] w-[350px] absolute top-24 left-1 rounded-lg flex justify-top items-center flex-col">
+    <AccordionContent className="w-[180px] flex justify-center items-end ">
+     <div className=" bg-[#e0e0e00c] border border-gray-800 border-opacity-80 h-[400px] w-[350px] absolute top-24 left-1 rounded-lg flex justify-top items-center flex-col">
       <h1 className="text-gray-300 text-lg py-4">LISTA DE TAREAS</h1>
       <span className="h-0.5 w-[85%] bg-[#1a1c27] mb-2"></span>
       <AddToDoForm/>
