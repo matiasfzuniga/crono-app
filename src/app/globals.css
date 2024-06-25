@@ -35,6 +35,20 @@
  
     --radius: 0.5rem;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #303030;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(71, 71, 71);
+  }
+  
  
 }
 

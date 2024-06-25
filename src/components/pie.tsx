@@ -40,8 +40,8 @@ const Pie = ({ params, color }: { params: string[], color:string[] }) => {
       className="flex justify-center items-center flex-col"
     >
       <Card className={`bg-[#e0e0e00c] shadow-lg border border-gray-900 p-6`}>
-        <div className="flex justify-between items-center">
-          <h1 className="text-xl text-gray-300">Tags más utilizados</h1>
+        <div className="flex justify-between items-center text-gray-300">
+          <h1 className="text-xl">Tags más utilizados</h1>
           <Tag width={15} height={15}/>
         </div>
         <Doughnut
