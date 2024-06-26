@@ -43,7 +43,7 @@ const TagUpdate = ({ params, id }: any) => {
       />
       {JSON.stringify(params) !== JSON.stringify(tags) ? (
         <Button
-          className={`m-4 mr-10 mb-8 bg-orange-400 hover:bg-orange-500`}
+          className={`m-4 mr-10 mb-8 bg-slate-700 hover:bg-[#4c4b96]`}
           onClick={handleSend}
         >
           guardar

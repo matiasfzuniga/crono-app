@@ -11,10 +11,10 @@ const List = (items: any) => {
 
   return (
     <motion.div
-      className={`bg-[#e0e0e00c] border border-gray-900 mt-4 w-[350px] rounded-lg ${isExpanded?'overflow-y-auto':'overflow-hidden'} cursor-pointer`}
+      className={`bg-[#e0e0e00c] hover:bg-[#e6e6e611] border border-gray-900 mt-4 w-[350px] rounded-lg ${isExpanded?'overflow-y-auto':'overflow-hidden'} cursor-pointer`}
       initial={{ height: 50 }}
       animate={{ height: isExpanded ? 2000 : 50 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: isExpanded ? 0.7 : 0.3}}
       onClick={handleExpandClick}
     >
       <div className={`flex justify-center items-end ${isExpanded?'':'pr-1'}`}>
@@ -26,13 +26,13 @@ const List = (items: any) => {
       <motion.div
         initial={{ y: 0 }}
         animate={{ y: isExpanded ? -500 : -420 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
         className="h-full w-full relative"
       >
         <motion.div
           className="absolute left-4 p-3"
-          initial={{ y: 0 }}
-          animate={{ y: 500 }}
+          initial={{ y: 500 }}
+          animate={{ y: 510 }}
           transition={{ duration: 0.5 }}
         >
           {items.items.map((item: string, index: number) => (
