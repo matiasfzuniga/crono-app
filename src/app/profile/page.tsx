@@ -39,7 +39,6 @@ const Profile = () => {
   const updateObj = useStore((state) => state.updateObj);
   const obj = useStore((state) => state.obj);
 
-  console.log(tags)
   useEffect(() => {
     if (session?.user) {
       fetchUserTags()

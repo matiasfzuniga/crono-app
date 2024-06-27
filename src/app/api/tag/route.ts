@@ -27,20 +27,13 @@ export async function GET(req: NextRequest) {
             name: true,
             tagColors: {
               select: {
-                id: true,
                 color: true,
               },
             },
           },
         });
-        console.log(tags)
-        const userTags = tags.map(tag => ({
-          id: tag.id,
-          name: tag.name,
-          color: tag.tagColors.length > 0 ? tag.tagColors[0].color : randomColor() ,
-        }));
     
-        return NextResponse.json(userTags)
+        return NextResponse.json(tags)
       } catch (error) {
         console.error("Error al procesar la solicitud GET:", error);
         return NextResponse.error();

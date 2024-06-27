@@ -41,7 +41,19 @@ export async function POST(request: NextRequest) {
           connectOrCreate: tags.map((tag: string) => {
             return {
               where: { name: tag },
-              create: { name: tag },
+              create: { 
+                name: tag,
+                tagColors: {
+                  create: {
+                    color: randomColor(),
+                    user:{
+                      connect: {
+                        email: session?.user?.email!,
+                      },
+                    }
+                  }
+                }
+              },
             };
           }),
         },
@@ -50,6 +62,8 @@ export async function POST(request: NextRequest) {
         }
       },
     });
+
+
 
 
     return NextResponse.json(Workday);
