@@ -38,7 +38,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
         ...newTags.map((tag:string) => prisma.tag.create({
           data: {
             name: tag,
-            color: randomColor()
           },
         })),
       ];

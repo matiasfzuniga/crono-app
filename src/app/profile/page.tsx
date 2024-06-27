@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -9,10 +9,57 @@ import LogOutComponent from "@/components/logOut";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ColorPicker from "@/components/colorPicker";
 
+const fetchUserTags = async () => {
+  const response = await fetch(`/api/tag`);
+  if (!response.ok) {
+    throw new Error("Error al obtener los tags");
+  }
+  const data = await response.json();
+  return data;
+};
+
+const updateTagColor = async (tagId:number, newColor:string, user:string | null | undefined) => {
+  const response = await fetch(`/api/tag/${tagId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ color: newColor, user }),
+  });
+  if (!response.ok) {
+    throw new Error("Error al actualizar el color del tag");
+  }
+  const data = await response.json();
+  return data;
+};
+
 const Profile = () => {
   const { data: session } = useSession();
+  const [tags, setTags] = useState([]);
   const updateObj = useStore((state) => state.updateObj);
   const obj = useStore((state) => state.obj);
+
+  console.log(tags)
+  useEffect(() => {
+    if (session?.user) {
+      fetchUserTags()
+        .then(setTags)
+        .catch((error) => console.error("Error al obtener los tags:", error));
+    }
+  }, [session]);
+
+  const handleColorChange = async (tagId:number, newColor:string) => {
+    try {
+      const updatedTag = await updateTagColor(tagId, newColor, session?.user?.email);
+      setTags((prevTags:any) =>
+        prevTags.map((tag:any) =>
+          tag.id === tagId ? { ...tag, color: updatedTag.color } : tag
+        )
+      );
+    } catch (error) {
+      console.error("Error al actualizar el color del tag:", error);
+    }
+  };
 
   return (
     <motion.div
@@ -69,7 +116,7 @@ const Profile = () => {
           <h1 className="text-gray-300 pt-3 pl-7 font-semibold text-sm">
             S E T &nbsp; C O L O R &nbsp; I N &nbsp; T A G S
           </h1>
-          <div className="flex justify-center items-center bg-[#e0e0e00c] border border-gray-900 rounded-lg w-[390px] h-full pr-10 m-2 text-gray-200">
+          <div id="aca" className="flex justify-center items-center bg-[#e0e0e00c] border border-gray-900 rounded-lg w-[390px] h-full pr-10 m-2 text-gray-200">
             <div className="flex justify-center items-center flex-col px-2">
               <p className="pb-2 text-gray-400 font-mono text-xs">TAG</p>
               <div className="flex justify-center items-center">

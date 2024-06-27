@@ -50,7 +50,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
       select: {
         id: true,
         name: true,
-        color:true,
         workdays: {
           select: {
             id: true,
@@ -66,16 +65,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
           acc[tag.name] = 0;
         }
         acc[tag.name] += tag.workdays.length;
-      }
-      return acc;
-    }, {} as { [key: string]: number });
-
-    const tagColor = userTags.reduce((acc, tag) => {
-      if (tag.color) {
-        if (!acc[tag.color]) {
-          acc[tag.color] = 0;
-        }
-        acc[tag.color] += tag.workdays.length;
       }
       return acc;
     }, {} as { [key: string]: number });
@@ -121,7 +110,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       totalTimeInSecondsThisMonth
     );
 
-    return NextResponse.json({ tagCountMap, tagColor, totalTimeInHoursThisMonth,statusWorkday });
+    return NextResponse.json({ tagCountMap, totalTimeInHoursThisMonth,statusWorkday });
   } catch (error) {
     console.error("Error al procesar la solicitud GET:", error);
     return NextResponse.error();

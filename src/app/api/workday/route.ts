@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
           connectOrCreate: tags.map((tag: string) => {
             return {
               where: { name: tag },
-              create: { name: tag, color:randomColor()},
+              create: { name: tag },
             };
           }),
         },
@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
         }
       },
     });
+
 
     return NextResponse.json(Workday);
   } catch (error) {

@@ -6,7 +6,7 @@ interface ColorPickerProps {
 
 const ColorPicker = ({ value = "#FFA14F" }: ColorPickerProps) => {
   const [color, setColor] = useState(value);
-  const pickerID = `color-picker_${Date.now()}`;
+  const pickerID = `color-picker_${1}`;
 
   const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
